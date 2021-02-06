@@ -17,12 +17,12 @@ export const fetchGroups = (): Promise<IApiResponseBase<IResponseGroup[]>> =>
   fetchDataBase<IResponseGroup[]>(groupsPath, undefined, true);
 
 export const fetchGroup = (
-  groupId: string
+  groupId: string,
 ): Promise<IApiResponseBase<IResponseGroup>> =>
   fetchGroupedDataBase<IResponseGroup>(groupId, groupsPath);
 
 export const createGroup = (
-  item: IGroupBase
+  item: IGroupBase,
 ): Promise<IApiResponseBase<undefined>> =>
   postData({
     url: groupsPath,
@@ -37,10 +37,10 @@ export const createGroup = (
  */
 export const updateGroup = (
   item: IUpdateGroup,
-  groupId: string
+  groupId: string,
 ): Promise<IApiResponseBase<undefined>> => {
   const body = _.cloneDeep(item);
-  if (body.add_user) body.add_user = body.add_user.filter((u) => u);
+  if (body.add_user) body.add_user = body.add_user.filter(u => u);
   return putData({
     url: groupsPath,
     params: { g: groupId },
@@ -51,7 +51,7 @@ export const updateGroup = (
 
 export const deleteGroup = (
   id: string,
-  groupId: string
+  groupId: string,
 ): Promise<IApiResponseBase<undefined>> =>
   deleteData({
     url: groupsPath,

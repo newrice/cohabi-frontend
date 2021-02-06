@@ -17,7 +17,7 @@ export const fetchMe = (): Promise<IApiResponseBase<ICurrentUser>> =>
   }).then((data: IApiResponseBase<ICurrentUser>) => data);
 
 export const updateProfile = (
-  item: IUser
+  item: IUser,
 ): Promise<IApiResponseBase<undefined>> =>
   putData({
     url: mePath,

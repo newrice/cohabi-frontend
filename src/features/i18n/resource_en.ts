@@ -1,0 +1,66 @@
+import { II18n } from "./resource.type";
+
+const en: II18n = {
+  MSG_SUCCESS: "Succes",
+  MSG_FAILED: "Failed",
+  MSG_CREATE_ADMIN_ACCOUNT: "Create administrator account",
+  MSG_USER_ID_ALLOWED_CHARS: "Only alphabets, number, .-_ allowed",
+  MSG_PASSWORD_ALLOWED_CHARS:
+    "Must contain 1 lower case and 1 numeric character. ",
+  MSG_CLICK_HERE: "Click here",
+  OUTPUT_USER_SUMMARY_HAPPY: "is Happy!",
+  OUTPUT_USER_SUMMARY_SEND: "sends",
+  OUTPUT_USER_SUMMARY_RECIEVE: "recieves",
+  OUTPUT_SUMMARY_TOTAL: "Total",
+  // headers
+  HEADER_GROUP_MEMBERS: "Group Members",
+  HEADER_INVITE_NEW_MEMBER: "Invite new member",
+  HEADER_SIGNUP: "Sign Up",
+  HEADER_TODO: "Todo",
+  HEADER_CALENDAR: "Calendar",
+  HEADER_LABEL_GROUP: "Select Group",
+  // input labels
+  LABEL_TODO: "Todo",
+  LABEL_COMMENT: "Comment",
+  LABEL_CATEGORY: "Category",
+  LABEL_USER: "User",
+  LABEL_DATE: "Date",
+  LABEL_AMMOUNT: "Ammount",
+  LABEL_SCHEDULE: "Schedule",
+  LABEL_ID: "ID",
+  LABEL_NAME: "Name",
+  LABEL_EMAIL: "Email",
+  LABEL_USER_ID: "User ID",
+  LABEL_PASSWORD: "Password",
+  LABEL_GROUP_NAME: "Group Name",
+  LABEL_INVITE_USER_ID: "Inivite User ID",
+  LABEL_OLD_PASSWORD: "Current Password",
+  LABEL_NEW_PASSWORD: "New Password",
+  LABEL_CONFIRM_NEW_PASSWORD: "New Password",
+  // button labels
+  LABEL_SAVE: "Save",
+  LABEL_CANCEL: "Cancel",
+  LABEL_SUBMIT: "Submit",
+  LABEL_DELETE: "Delete",
+  LABEL_LOGIN: "Login",
+  LABEL_SIGNUP: "Sign Up",
+  LABEL_INVITE: "Invite",
+  LABEL_EXIT_GROUP: "Exit Group",
+  // menu labels
+  MENU_LABEL_KAKEIBO: "Wallet",
+  MENU_LABEL_FORM: "Form",
+  MENU_LABEL_LIST: "List",
+  MENU_LABEL_CATEGORIES: "Categories",
+  MENU_LABEL_TODO: "Todo",
+  MENU_LABEL_CALENDAR: "Calendar",
+  MENU_LABEL_PROFILE: "Profile",
+  MENU_LABEL_GROUP: "Group",
+  MENU_LABEL_SIGNUP: "Sign up",
+  MENU_LABEL_SIGNOUT: "Sign Out",
+  // palce holders
+  PH_YEN: "¥{0}",
+  PH_MSG_GET_DATA_SUCCESS: "Get {0} Succeeded",
+  PH_MSG_GET_DATA_FAILED: "Get {0} Failed",
+};
+
+export default en;

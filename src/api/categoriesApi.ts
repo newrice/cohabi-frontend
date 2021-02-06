@@ -7,7 +7,7 @@ const categoriesPath = BASE_BACKEND + settings.url.categories;
 // eslint-disable-next-line import/prefer-default-export
 export const createCategories = (
   items: ICategory[],
-  groupId: string
+  groupId: string,
 ): Promise<IApiResponseBase<undefined>> =>
   postData({
     url: categoriesPath,
