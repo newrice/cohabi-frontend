@@ -71,24 +71,33 @@ const Controller = ({ active, onDeactive }: IGroupsDialog): JSX.Element => {
   };
 
   const handleCreateNewGroup = async () => {
-    // const res =
-    await createGroup({ name: newGroupName });
-    clearAll();
-    handleClose();
+    const res = await createGroup({ name: newGroupName });
+    const { error } = isApiError(res);
+    if (!error) {
+      dispatch(fetchCurrentUser());
+      clearAll();
+      handleClose();
+    }
   };
 
   const handleUpdateGroup = async () => {
-    // const res =
-    await updateGroup({ name: editGroupName }, editGroupId);
-    clearAll();
-    handleClose();
+    const res = await updateGroup({ name: editGroupName }, editGroupId);
+    const { error } = isApiError(res);
+    if (!error) {
+      dispatch(fetchCurrentUser());
+      clearAll();
+      handleClose();
+    }
   };
 
   const handleInviteUser = async () => {
-    // const res =
-    await updateGroup({ add_user: [inviteUserId] }, editGroupId);
-    clearAll();
-    handleClose();
+    const res = await updateGroup({ add_user: [inviteUserId] }, editGroupId);
+    const { error } = isApiError(res);
+    if (!error) {
+      dispatch(fetchCurrentUser());
+      clearAll();
+      handleClose();
+    }
   };
 
   const handleExitGroup = async () => {
