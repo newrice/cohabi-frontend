@@ -1,0 +1,66 @@
+import { II18n } from "./resource.type";
+
+const ja: II18n = {
+  MSG_SUCCESS: "成功しました！",
+  MSG_FAILED: "失敗しました",
+  MSG_CREATE_ADMIN_ACCOUNT: "管理アカウントを作成します。",
+  MSG_USER_ID_ALLOWED_CHARS: "半角英数と.-_で入力してください。",
+  MSG_PASSWORD_ALLOWED_CHARS:
+    "小文字数字を1文字以上含む半角英数で入力してください。",
+  MSG_CLICK_HERE: "こちらから",
+  OUTPUT_USER_SUMMARY_HAPPY: "はハッピー!",
+  OUTPUT_USER_SUMMARY_SEND: "は払う",
+  OUTPUT_USER_SUMMARY_RECIEVE: "は受け取る",
+  OUTPUT_SUMMARY_TOTAL: "合計",
+  // headers
+  HEADER_GROUP_MEMBERS: "メンバー",
+  HEADER_INVITE_NEW_MEMBER: "招待",
+  HEADER_SIGNUP: "サインアップ",
+  HEADER_TODO: "Todo",
+  HEADER_CALENDAR: "カレンダー",
+  HEADER_LABEL_GROUP: "グループ",
+  // input labels
+  LABEL_TODO: "Todo",
+  LABEL_COMMENT: "コメント",
+  LABEL_CATEGORY: "カテゴリ",
+  LABEL_USER: "ユーザ",
+  LABEL_DATE: "日付",
+  LABEL_AMMOUNT: "金額",
+  LABEL_SCHEDULE: "予定",
+  LABEL_ID: "ID",
+  LABEL_NAME: "名前",
+  LABEL_EMAIL: "メールアドレス",
+  LABEL_USER_ID: "ユーザID",
+  LABEL_PASSWORD: "パスワード",
+  LABEL_GROUP_NAME: "グループ名",
+  LABEL_INVITE_USER_ID: "招待ユーザID",
+  LABEL_OLD_PASSWORD: "旧パスワード",
+  LABEL_NEW_PASSWORD: "新パスワード",
+  LABEL_CONFIRM_NEW_PASSWORD: "新パスワード",
+  // button labels
+  LABEL_SAVE: "保存",
+  LABEL_CANCEL: "キャンセル",
+  LABEL_SUBMIT: "登録",
+  LABEL_DELETE: "削除",
+  LABEL_LOGIN: "ログイン",
+  LABEL_SIGNUP: "サインアップ",
+  LABEL_INVITE: "招待",
+  LABEL_EXIT_GROUP: "退会する",
+  // menu labels
+  MENU_LABEL_KAKEIBO: "家計簿",
+  MENU_LABEL_FORM: "入力",
+  MENU_LABEL_LIST: "一覧",
+  MENU_LABEL_CATEGORIES: "カテゴリ",
+  MENU_LABEL_TODO: "Todo",
+  MENU_LABEL_CALENDAR: "カレンダー",
+  MENU_LABEL_PROFILE: "アカウント",
+  MENU_LABEL_GROUP: "グループ",
+  MENU_LABEL_SIGNUP: "サインアップ",
+  MENU_LABEL_SIGNOUT: "サインアウト",
+  // palce holders
+  PH_YEN: "{0}円",
+  PH_MSG_GET_DATA_SUCCESS: "{0}の取得に成功しました",
+  PH_MSG_GET_DATA_FAILED: "{0}の取得に失敗しました",
+};
+
+export default ja;

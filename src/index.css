@@ -19,3 +19,232 @@ amplify-authenticator {
   flex: 1;
   /* margin: 24px; */
 }
+
+/**
+ * parts
+ */
+.underlay-paper-base {
+  margin: 10px;
+  padding: 10px;
+}
+
+.row-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.column-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.jc-strech-container {
+  justify-content: stretch;
+}
+
+.jc-sp-between-container {
+  justify-content: space-between;
+}
+
+.jc-center-container {
+  justify-content: center;
+}
+
+.ai-strech-container {
+  align-items: stretch;
+}
+
+.ai-center-container {
+  align-items: center;
+}
+
+.ai-flex-end-container {
+  align-items: flex-end;
+}
+
+.flex-auto {
+  flex: 1 1 auto;
+}
+
+.user-avatar.avatar-large {
+  width: 100px;
+  height: 100px;
+}
+
+.user-avatar.avatar-medium {
+  width: 60px;
+  height: 60px;
+}
+
+.input-field-base.input-field-grow {
+  flex-grow: 1;
+}
+
+.margin-tb-8 {
+  margin: 8px 0;
+}
+
+.margin-rl-8 {
+  margin: 0 8px;
+}
+
+.strech-button {
+  width: 100%;
+}
+
+.strech-button.margin-tb-8 {
+  margin: 8px 0;
+}
+
+.fab-bottom-spacer {
+  padding-bottom: 46px;
+}
+
+.input-text-align-center input {
+  text-align: center;
+}
+
+.p-text-align-center p {
+  text-align: center;
+}
+
+/**
+ * react-router-link
+ */
+.router-link-base {
+  color: inherit;
+  text-decoration: none;
+}
+
+/**
+ * swipables
+ */
+.swipable-base {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.swipable-ltr {
+  justify-content: flex-end;
+}
+
+.swipable-undone {
+  background: #3a5800;
+  color: white;
+}
+
+.swipable-done {
+  background: #4caf50;
+  color: white;
+}
+
+.swipable-delete {
+  background: #f50057;
+  color: white;
+}
+
+/**
+ * swipable elevated paper
+ */
+.react-swipeable-view-container
+  > div[data-swipeable="true"]
+  > .MuiPaper-elevation1 {
+  margin: 5px 1px;
+}
+
+/**
+ * List items group title
+ */
+.MuiTypography-subtitle1.list-view-grouped-title {
+  margin: 12px 0;
+  text-align: center;
+  font-weight: 600;
+}
+
+/**
+ * input-dialog
+ */
+.input-dialog-base {
+  align-items: center;
+  padding: 20px 40px;
+}
+
+/**
+ * inside container decralations
+ */
+.column-container > .input-field-base {
+  margin: 5px;
+}
+
+/**
+ * border radius
+ */
+.border-top-radius {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+/**
+ * TODO: FIXIT
+ */
+.input-signup-form {
+  padding: 0 10px;
+  align-items: stretch;
+}
+
+.output-cost-wrapper .MuiAlert-root,
+.input-wrapper .MuiAlert-root {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.signup-description {
+  padding: 0 16px;
+}
+
+.MuiAccordionSummary-content {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.output-cost-user-summary-paper {
+  width: 100%;
+  max-width: 400px;
+  height: 20%;
+  margin: 8px 0px;
+  padding: 8px;
+}
+
+.output-cost-list-root {
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: auto;
+  width: 100%;
+  max-width: 400px;
+}
+
+.output-cost-base {
+  margin: 8px;
+  padding: 8px;
+}
+
+.output-cost-base .output-cost-list-tooltip {
+  margin: 0px;
+}
+
+/**
+ * categories add icon
+ */
+.column-container .edit-categories-add-button {
+  padding: 9px;
+}
+
+/**
+ * navigation-menu
+ */
+.navigation-menu {
+  flex: 1 1 auto;
+  min-width: 200px;
+}

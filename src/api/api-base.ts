@@ -28,7 +28,7 @@ BaseApiProp): Promise<any> => {
   const p = new URLSearchParams();
   // パラメタがあった場合は追加
   if (params) {
-    Object.keys(params).forEach((key) => p.append(key, params[key]));
+    Object.keys(params).forEach(key => p.append(key, params[key]));
     urlObj.search = p.toString();
   }
   return fetch(urlObj.toString(), {
@@ -39,8 +39,8 @@ BaseApiProp): Promise<any> => {
     headers,
     redirect: "follow",
   })
-    .then((response) => response.json())
-    .catch((e) => e);
+    .then(response => response.json())
+    .catch(e => e);
 };
 
 const basePut = async ({
@@ -54,7 +54,7 @@ BaseApiPropWithBody): Promise<any> => {
   const p = new URLSearchParams();
   // パラメタがあった場合は追加
   if (params) {
-    Object.keys(params).forEach((key) => p.append(key, params[key]));
+    Object.keys(params).forEach(key => p.append(key, params[key]));
     urlObj.search = p.toString();
   }
   return fetch(urlObj.toString(), {
@@ -66,8 +66,8 @@ BaseApiPropWithBody): Promise<any> => {
     redirect: "follow",
     body: JSON.stringify(body), // 本文のデータ型は "Content-Type" ヘッダーと一致する必要があります
   })
-    .then((response) => response.json()) // レスポンスの JSON を解析
-    .catch((e) => e);
+    .then(response => response.json()) // レスポンスの JSON を解析
+    .catch(e => e);
 };
 
 const basePost = async ({
@@ -81,7 +81,7 @@ BaseApiPropWithBody): Promise<any> => {
   const p = new URLSearchParams();
   // パラメタがあった場合は追加
   if (params) {
-    Object.keys(params).forEach((key) => p.append(key, params[key]));
+    Object.keys(params).forEach(key => p.append(key, params[key]));
     urlObj.search = p.toString();
   }
   return fetch(urlObj.toString(), {
@@ -93,8 +93,8 @@ BaseApiPropWithBody): Promise<any> => {
     redirect: "follow",
     body: JSON.stringify(body), // 本文のデータ型は "Content-Type" ヘッダーと一致する必要があります
   })
-    .then((response) => response.json()) // レスポンスの JSON を解析
-    .catch((e) => e);
+    .then(response => response.json()) // レスポンスの JSON を解析
+    .catch(e => e);
 };
 const baseDelete = async ({
   url,
@@ -106,7 +106,7 @@ BaseApiProp): Promise<any> => {
   const p = new URLSearchParams();
   // パラメタがあった場合は追加
   if (params) {
-    Object.keys(params).forEach((key) => p.append(key, params[key]));
+    Object.keys(params).forEach(key => p.append(key, params[key]));
     urlObj.search = p.toString();
   }
   return fetch(urlObj.toString(), {
@@ -117,8 +117,8 @@ BaseApiProp): Promise<any> => {
     headers,
     redirect: "follow",
   })
-    .then((response) => response.json())
-    .catch((e) => e);
+    .then(response => response.json())
+    .catch(e => e);
 };
 
 /**
@@ -128,16 +128,16 @@ BaseApiProp): Promise<any> => {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const withAuthGet = ({ url, params, headers }: BaseApiProp): Promise<any> =>
   new Promise((res, rej) => {
-    Auth.currentSession().then((data) => {
+    Auth.currentSession().then(data => {
       const token = data.getIdToken().getJwtToken();
       const header = Object.assign(headers, {
         Authorization: `Bearer ${token}`,
       });
       baseGet({ url, params, headers: header })
-        .then((apiresult) => {
+        .then(apiresult => {
           res(apiresult);
         })
-        .catch((error) => {
+        .catch(error => {
           rej(error);
         });
     });
@@ -151,16 +151,16 @@ const withAuthPut = ({
 }: // eslint-disable-next-line @typescript-eslint/no-explicit-any
 BaseApiPropWithBody): Promise<any> =>
   new Promise((res, rej) => {
-    Auth.currentSession().then((data) => {
+    Auth.currentSession().then(data => {
       const token = data.getIdToken().getJwtToken();
       const header = Object.assign(headers, {
         Authorization: `Bearer ${token}`,
       });
       basePut({ url, params, body, headers: header })
-        .then((apiresult) => {
+        .then(apiresult => {
           res(apiresult);
         })
-        .catch((error) => {
+        .catch(error => {
           rej(error);
         });
     });
@@ -174,16 +174,16 @@ const withAuthPost = ({
 }: // eslint-disable-next-line @typescript-eslint/no-explicit-any
 BaseApiPropWithBody): Promise<any> =>
   new Promise((res, rej) => {
-    Auth.currentSession().then((data) => {
-      const token = data.getAccessToken().getJwtToken();
+    Auth.currentSession().then(data => {
+      const token = data.getIdToken().getJwtToken();
       const header = Object.assign(headers, {
         Authorization: `Bearer ${token}`,
       });
       basePost({ url, params, body, headers: header })
-        .then((apiresult) => {
+        .then(apiresult => {
           res(apiresult);
         })
-        .catch((error) => {
+        .catch(error => {
           rej(error);
         });
     });
@@ -199,16 +199,16 @@ const withAuthDelete = ({
   headers, // eslint-disable-next-line @typescript-eslint/no-explicit-any
 }: BaseApiProp): Promise<any> =>
   new Promise((res, rej) => {
-    Auth.currentSession().then((data) => {
+    Auth.currentSession().then(data => {
       const token = data.getIdToken().getJwtToken();
       const header = Object.assign(headers, {
         Authorization: `Bearer ${token}`,
       });
       baseDelete({ url, params, headers: header })
-        .then((apiresult) => {
+        .then(apiresult => {
           res(apiresult);
         })
-        .catch((error) => {
+        .catch(error => {
           rej(error);
         });
     });

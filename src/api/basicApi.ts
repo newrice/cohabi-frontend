@@ -5,7 +5,7 @@ import { IApiResponseBase, ICategory, IUser, QueryParams } from "../types";
 export const fetchDataBase = <T>(
   url: string,
   params?: QueryParams,
-  withAuth?: boolean
+  withAuth?: boolean,
 ): Promise<IApiResponseBase<T>> =>
   getData({
     url,
@@ -15,26 +15,26 @@ export const fetchDataBase = <T>(
 
 export const fetchAuthDataBase = <T>(
   groupId: string,
-  url: string
+  url: string,
 ): Promise<IApiResponseBase<T>> => fetchDataBase<T>(url, { g: groupId }, true);
 
 export const fetchGroupedDataBase = <T>(
   groupId: string,
-  url: string
+  url: string,
 ): Promise<IApiResponseBase<T>> => fetchAuthDataBase<T>(groupId, url);
 
 export const fetchCategories = (
-  groupId: string
+  groupId: string,
 ): Promise<IApiResponseBase<ICategory[] | undefined>> =>
   fetchGroupedDataBase<ICategory[] | undefined>(
     groupId,
-    `${BASE_BACKEND}${settings.url.categories}`
+    `${BASE_BACKEND}${settings.url.categories}`,
   );
 
 export const fetchUsers = (
-  groupId: string
+  groupId: string,
 ): Promise<IApiResponseBase<IUser[] | undefined>> =>
   fetchGroupedDataBase<IUser[] | undefined>(
     groupId,
-    `${BASE_BACKEND}${settings.url.users}`
+    `${BASE_BACKEND}${settings.url.users}`,
   );
