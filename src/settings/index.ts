@@ -1,9 +1,8 @@
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
   api: {
-    production: "https://kakeibo-api.unison-8225.com",
+    production: "https://gcuoqt6cx9.execute-api.ap-northeast-1.amazonaws.com",
     development: "https://gcuoqt6cx9.execute-api.ap-northeast-1.amazonaws.com",
-    // development: 'https://kakeibo-api.unison-8225.com',
     test: "http://localhost:3001",
   },
   url: {
