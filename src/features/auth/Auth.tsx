@@ -8,17 +8,21 @@ import {
 } from "@aws-amplify/ui-react";
 import { AuthState } from "@aws-amplify/ui-components";
 import { selectAuthState } from "./authSlice";
+import SignupSent from "./SignupSent";
 
 interface IAuthPage {
+  initialAuthState?: AuthState.SignIn | AuthState.SignUp;
   children?: React.ReactNode;
 }
-
-const WithAuth = ({ children }: IAuthPage): JSX.Element => {
+const WithAuth = ({ initialAuthState, children }: IAuthPage): JSX.Element => {
   const authState = useSelector(selectAuthState);
+  // eslint-disable-next-line no-nested-ternary
   return authState === AuthState.SignedIn ? (
     <>{children}</>
+  ) : authState === AuthState.ConfirmSignUp ? (
+    <SignupSent />
   ) : (
-    <AmplifyAuthenticator>
+    <AmplifyAuthenticator initialAuthState={initialAuthState}>
       <AmplifySignIn slot="sign-in" />
       <AmplifySignUp
         slot="sign-up"
@@ -33,6 +37,7 @@ const WithAuth = ({ children }: IAuthPage): JSX.Element => {
 };
 
 WithAuth.defaultProps = {
+  initialAuthState: AuthState.SignIn,
   children: null,
 };
 
