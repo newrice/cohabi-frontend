@@ -18,7 +18,7 @@ export default {
   },
   app: {
     name: "Cohabi",
-    url: "https://kakeibo.unison-8225.com",
+    url: "https://cohabi.unison-8225.com",
   },
   constants: {
     newId: "__new__",
