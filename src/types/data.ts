@@ -1,15 +1,15 @@
+export interface ICategory {
+  id: string;
+  name: string;
+  disabled: boolean;
+}
+
 export interface ICurrentUser {
   email: string;
   id: string;
   name: string;
   avatar: string;
   groups: IGroup[];
-}
-
-export interface ICategory {
-  id: string;
-  name: string;
-  disabled: boolean;
 }
 
 export interface IGroupBase {

@@ -46,6 +46,8 @@ const ja: II18n = {
   LABEL_SIGNUP: "サインアップ",
   LABEL_INVITE: "招待",
   LABEL_EXIT_GROUP: "退会する",
+  LABEL_ACTIVATION: "有効化",
+  LABEL_INVALIDATION: "無効化",
   // menu labels
   MENU_LABEL_KAKEIBO: "家計簿",
   MENU_LABEL_FORM: "入力",

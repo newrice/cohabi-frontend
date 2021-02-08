@@ -43,6 +43,8 @@ export interface II18n {
   LABEL_SIGNUP: string;
   LABEL_INVITE: string;
   LABEL_EXIT_GROUP: string;
+  LABEL_ACTIVATION: string;
+  LABEL_INVALIDATION: string;
   // menu labels
   MENU_LABEL_KAKEIBO: string;
   MENU_LABEL_FORM: string;
