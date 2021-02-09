@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+import { isEmpty } from "lodash";
 import { ISnackBarBase } from "../../component/parts";
 import { selectCurrentGroup } from "../group/groupSlice";
 import { createCategories, fetchCategories } from "../../api";
@@ -36,7 +37,7 @@ const CategoriesController = (): JSX.Element => {
         setSnack(createSnackState(error, message));
         setSnackOpen(true);
       } else {
-        setCategories(data.body || []);
+        setCategories(data.body && !isEmpty(data.body) ? data.body : []);
       }
       setSending(false);
     };
