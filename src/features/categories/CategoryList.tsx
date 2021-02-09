@@ -18,6 +18,7 @@ import {
 import { isN999 } from "../../utils";
 import { ICategory } from "../../types";
 import settings from "../../settings";
+import { arrayMoveClone } from "../../utils/arrayUtil";
 
 const getBaseCategory = (): ICategory => ({
   id: settings.constants.newId + performance.now(),
@@ -126,6 +127,10 @@ const SortableCategoryList = ({
     lockAxis="y"
     useDragHandle
     onEditCategories={onEditCategories}
+    onSortEnd={({ oldIndex, newIndex }) => {
+      const newArray = arrayMoveClone(categories, oldIndex, newIndex);
+      onEditCategories(newArray);
+    }}
   />
 );
 

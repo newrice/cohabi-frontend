@@ -30,20 +30,14 @@ const CategoriesController = (): JSX.Element => {
   useEffect(() => {
     setSending(true);
     const getDatas = async () => {
-      const data = [
-        { id: "aaa", name: "家具", disabled: false },
-        { id: "bbb", name: "食費", disabled: false },
-        { id: "N_999", name: "その他", disabled: false },
-      ];
-      setCategories(data);
-      // await fetchCategories(currentGroup.id)
-      // const { error, message } = isApiError(data, true)
-      // if (error) {
-      //   setSnack(createSnackState(error, message))
-      //   setSnackOpen(true)
-      // } else {
-      //   setCategories(data.body || [])
-      // }
+      const data = await fetchCategories(currentGroup.id);
+      const { error, message } = isApiError(data, true);
+      if (error) {
+        setSnack(createSnackState(error, message));
+        setSnackOpen(true);
+      } else {
+        setCategories(data.body || []);
+      }
       setSending(false);
     };
     getDatas();
