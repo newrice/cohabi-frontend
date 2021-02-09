@@ -45,13 +45,13 @@ const menuItems: MenuObject[] = [
       },
     ],
   },
-  // {
-  //   key: "todos",
-  //   priority: 1,
-  //   label: "MENU_LABEL_TODO",
-  //   linkTo: "/todos",
-  //   icon: <PlaylistAddCheckIcon />,
-  // },
+  {
+    key: "todos",
+    priority: 1,
+    label: "MENU_LABEL_TODO",
+    linkTo: "/todos",
+    icon: <PlaylistAddCheckIcon />,
+  },
   // {
   //   key: "calendar",
   //   priority: 2,

@@ -113,7 +113,7 @@ describe("* dateUtil", () => {
       expect(obj).toEqual({
         message: "Failed",
         severity: "error",
-        closable: false,
+        closable: true,
         autoHideDuration: undefined,
       });
     });
@@ -122,7 +122,7 @@ describe("* dateUtil", () => {
       expect(obj).toEqual({
         message: "",
         severity: "error",
-        closable: false,
+        closable: true,
         autoHideDuration: undefined,
       });
     });
@@ -131,7 +131,7 @@ describe("* dateUtil", () => {
       expect(obj).toEqual({
         message: "Success",
         severity: "success",
-        closable: true,
+        closable: false,
         autoHideDuration: 3000,
       });
     });
@@ -140,7 +140,7 @@ describe("* dateUtil", () => {
       expect(obj).toEqual({
         message: "",
         severity: "success",
-        closable: true,
+        closable: false,
         autoHideDuration: 3000,
       });
     });

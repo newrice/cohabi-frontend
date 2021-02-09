@@ -26,7 +26,7 @@ export const createSnackState = (
 ): ISnackBarBase => ({
   message: msg,
   severity: isError ? "error" : "success",
-  closable: !isError,
+  closable: isError,
   autoHideDuration: !isError ? 3000 : undefined,
 });
 

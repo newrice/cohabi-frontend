@@ -2,20 +2,43 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Amplify from "aws-amplify";
 import { onAuthUIStateChange, AuthState } from "@aws-amplify/ui-components";
-import cognitoConfig from "./settings/auth-settings";
-import Header from "./component/header";
 import Router from "./Route";
-import { useStyles } from "./features/theme/themes";
+import Header from "./component/header";
+import { BasicCircuration } from "./component/circuration";
 import { setAuthState } from "./features/auth/authSlice";
+import {
+  closeSnack,
+  selectProgress,
+  selectSnackState,
+} from "./features/feedback/feedbackSlice";
+import { setCurrentGroup } from "./features/group/groupSlice";
 import {
   fetchCurrentUser,
   initialState,
   selectCurrentUser,
   setCurrentUser,
 } from "./features/user/userSlice";
-import { setCurrentGroup } from "./features/group/groupSlice";
+import cognitoConfig from "./settings/auth-settings";
+import { useStyles } from "./settings/themes";
+import { BasicSnackbar } from "./component/snackbar";
 
 Amplify.configure(cognitoConfig);
+
+const Feedback = (): JSX.Element => {
+  const dispatch = useDispatch();
+  const progress = useSelector(selectProgress);
+  const snackstate = useSelector(selectSnackState);
+  function onClose() {
+    dispatch(closeSnack());
+  }
+  const snackbar = snackstate ? { ...snackstate, onClose } : null;
+  return (
+    <>
+      <BasicCircuration open={progress} />
+      <BasicSnackbar snackbar={snackbar} />
+    </>
+  );
+};
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 const ApplicationContents = (): JSX.Element | null => {
@@ -25,6 +48,7 @@ const ApplicationContents = (): JSX.Element | null => {
       <Router>
         <Header />
       </Router>
+      <Feedback />
     </div>
   );
 };
