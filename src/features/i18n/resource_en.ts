@@ -46,6 +46,8 @@ const en: II18n = {
   LABEL_SIGNUP: "Sign Up",
   LABEL_INVITE: "Invite",
   LABEL_EXIT_GROUP: "Exit Group",
+  LABEL_ACTIVATION: "Enable",
+  LABEL_INVALIDATION: "Disable",
   // menu labels
   MENU_LABEL_KAKEIBO: "Wallet",
   MENU_LABEL_FORM: "Form",
