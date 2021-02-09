@@ -1,4 +1,4 @@
-import { ITodo } from "../../types";
+import { ITodo } from "../../src/types";
 
 const data: ITodo[] = [
   {
