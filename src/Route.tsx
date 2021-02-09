@@ -5,6 +5,7 @@ import { AuthState } from "@aws-amplify/ui-components";
 import Auth from "./features/auth/Auth";
 import Home from "./home";
 import Categories from "./features/categories";
+import Todos from "./features/todos";
 import Profile from "./features/user";
 
 interface WithRouteProps {
@@ -29,6 +30,9 @@ const AppWithRoute = (props: WithRouteProps): JSX.Element => {
           </Route>
           <Route exact path="/settings">
             <Profile />
+          </Route>
+          <Route exact path="/todos">
+            <Todos />
           </Route>
         </Auth>
         <Route path="/">

@@ -1,41 +1,34 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { isArray, isEmpty } from "lodash";
-import CategoryForm from "./CategoryForm";
+import TodoForm from "./TodoForm";
 import { setProgress, setSnackState } from "../feedback/feedbackSlice";
 import { selectCurrentGroup } from "../group/groupSlice";
-import { createCategories, fetchCategories } from "../../api";
-import settings from "../../settings";
-import { ICategory, IApiResponseBase } from "../../types";
+import { createTodo, deleteTodo, fetchTodos, updateTodo } from "../../api";
+import { IApiResponseBase, ITodoBase, ITodo } from "../../types";
 import { createSnackState, isApiError } from "../../utils";
 
-const filterNew = (categories: ICategory[]): ICategory[] =>
-  categories.map(item =>
-    item.id.startsWith(settings.constants.newId)
-      ? { ...item, ...{ id: "" } }
-      : { ...item },
-  );
-
-const CategoriesController = (): JSX.Element => {
-  const currentGroup = useSelector(selectCurrentGroup);
-  const [categories, setCategories] = useState<ICategory[]>([]);
-  const [refresh, setRefresh] = useState<boolean>(false);
+const TodosController = (): JSX.Element => {
   const dispatch = useDispatch();
+  const currentGroup = useSelector(selectCurrentGroup);
+  const [todos, setTodos] = useState<ITodo[]>([]);
+  const [refresh, setRefresh] = useState<boolean>(false);
 
   useEffect(() => {
     dispatch(setProgress(true));
     const getDatas = async () => {
-      const data = await fetchCategories(currentGroup.id);
+      const data = await fetchTodos(currentGroup.id);
       const { error, message } = isApiError(data, true);
       if (error) {
         dispatch(setSnackState(createSnackState(error, message)));
       } else {
-        setCategories(
+        setTodos(
           data.body && !isEmpty(data.body) && isArray(data.body) // FIXME: API修正次第削除
             ? data.body
             : [],
         );
       }
+      // setTodos(MockData);
       dispatch(setProgress(false));
     };
     getDatas();
@@ -50,21 +43,39 @@ const CategoriesController = (): JSX.Element => {
     setRefresh(!refresh);
   };
 
-  const handlePost = async () => {
+  const handlePost = async (item: ITodoBase) => {
     dispatch(setProgress(true));
-    const newArray = filterNew(categories);
-    const res = await createCategories(newArray, currentGroup.id);
+    const res = await createTodo(item, currentGroup.id);
+    dispatch(setProgress(false));
+    responseHandler(res);
+  };
+
+  const handlePut = async (item: ITodo) => {
+    dispatch(setProgress(true));
+    const res = await updateTodo(item, currentGroup.id);
+    dispatch(setProgress(false));
+    responseHandler(res);
+  };
+
+  const handleDelete = async (id: string) => {
+    dispatch(setProgress(true));
+    const res = await deleteTodo(id, currentGroup.id);
     dispatch(setProgress(false));
     responseHandler(res);
   };
 
   return (
-    <CategoryForm
-      categories={categories}
-      onEditCategories={setCategories}
-      onSubmitClick={handlePost}
+    <TodoForm
+      todos={todos}
+      onDelete={handleDelete}
+      onPost={handlePost}
+      onPut={handlePut}
     />
   );
 };
 
-export default CategoriesController;
+TodosController.defaultProps = {
+  authData: null,
+};
+
+export default TodosController;
