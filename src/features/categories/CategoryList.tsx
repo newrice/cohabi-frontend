@@ -7,7 +7,7 @@ import {
 } from "react-sortable-hoc";
 import { IconButton, SvgIcon } from "@material-ui/core";
 import DragHandleIcon from "@material-ui/icons/DragHandle";
-import _ from "lodash";
+import clone from "lodash/cloneDeep";
 import {
   endAddornmentClass,
   IN999CategoryItem,
@@ -69,22 +69,22 @@ const CategoryList = ({
   onEditCategories,
 }: ICategoryLista): JSX.Element => {
   const handleNameChange = (index: number) => (value: string | undefined) => {
-    const newArray = _.cloneDeep(items);
+    const newArray = clone(items);
     newArray[index].name = value || "";
     onEditCategories(newArray);
   };
   const handleAdd = () => {
-    const newArray = _.cloneDeep(items);
+    const newArray = clone(items);
     newArray.splice(newArray.length - 1, 0, getBaseCategory());
     onEditCategories(newArray);
   };
   const handleDisableClick = (index: number, disabled: boolean) => () => {
-    const newArray = _.cloneDeep(items);
+    const newArray = clone(items);
     newArray[index].disabled = disabled;
     onEditCategories(newArray);
   };
   const handleRemoveClick = (index: number) => () => {
-    const newArray = _.cloneDeep(items.filter((item, i) => i !== index));
+    const newArray = clone(items.filter((item, i) => i !== index));
     onEditCategories(newArray);
   };
 

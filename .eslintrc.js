@@ -30,7 +30,7 @@ module.exports = {
     },
   },
   rules: {
-    "@typescript-eslint/indent": ["error", 2],
+    "@typescript-eslint/indent": ["warn", 2],
     "@typescript-eslint/prefer-interface": "off",
     "no-use-before-define": "off",
     "@typescript-eslint/no-use-before-define": ["error"],

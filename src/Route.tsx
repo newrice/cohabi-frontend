@@ -3,7 +3,7 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { AuthState } from "@aws-amplify/ui-components";
 import Auth from "./features/auth/Auth";
-import Home from "./features/home";
+import Home from "./home";
 import Categories from "./features/categories";
 import Profile from "./features/user";
 

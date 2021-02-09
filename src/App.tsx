@@ -7,7 +7,7 @@ import {
 } from "@material-ui/core";
 import AppWithAuth from "./AppBody";
 import initI18n from "./features/i18n";
-import { MyTheme } from "./features/theme/themes";
+import { MyTheme } from "./settings/themes";
 
 initI18n();
 

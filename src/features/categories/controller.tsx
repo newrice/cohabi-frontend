@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { isEmpty } from "lodash";
-import { ISnackBarBase } from "../../component/parts";
+import CategoryForm from "./CategoryForm";
+import { setProgress, setSnackState } from "../feedback/feedbackSlice";
 import { selectCurrentGroup } from "../group/groupSlice";
 import { createCategories, fetchCategories } from "../../api";
-import { createSnackState, isApiError } from "../../utils";
-import { ICategory, IApiResponseBase } from "../../types";
 import settings from "../../settings";
-import CategoryForm from "./CategoryForm";
+import { ICategory, IApiResponseBase } from "../../types";
+import { createSnackState, isApiError } from "../../utils";
 
 const filterNew = (categories: ICategory[]): ICategory[] =>
   categories.map(item =>
@@ -20,45 +20,37 @@ const CategoriesController = (): JSX.Element => {
   const currentGroup = useSelector(selectCurrentGroup);
   const [categories, setCategories] = useState<ICategory[]>([]);
   const [refresh, setRefresh] = useState<boolean>(false);
-  const [sending, setSending] = useState<boolean>(false);
-  const [snackOpen, setSnackOpen] = useState<boolean>(false);
-  const [snack, setSnack] = useState<ISnackBarBase>({
-    message: "",
-    severity: "success",
-    closable: true,
-  });
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    setSending(true);
+    dispatch(setProgress(true));
     const getDatas = async () => {
       const data = await fetchCategories(currentGroup.id);
       const { error, message } = isApiError(data, true);
       if (error) {
-        setSnack(createSnackState(error, message));
-        setSnackOpen(true);
+        dispatch(setSnackState(createSnackState(error, message)));
       } else {
         setCategories(data.body && !isEmpty(data.body) ? data.body : []);
       }
-      setSending(false);
+      dispatch(setProgress(false));
     };
     getDatas();
-  }, [refresh, currentGroup]);
+  }, [dispatch, refresh, currentGroup]);
 
   const responseHandler = (
     res: IApiResponseBase<undefined>,
     withBody?: boolean,
   ) => {
     const { error, message } = isApiError(res, withBody);
-    setSnack(createSnackState(error, message));
-    setSnackOpen(true);
+    dispatch(setSnackState(createSnackState(error, message)));
     setRefresh(!refresh);
   };
 
   const handlePost = async () => {
-    setSending(true);
+    dispatch(setProgress(true));
     const newArray = filterNew(categories);
     const res = await createCategories(newArray, currentGroup.id);
-    setSending(false);
+    dispatch(setProgress(false));
     responseHandler(res);
   };
 
@@ -67,12 +59,6 @@ const CategoriesController = (): JSX.Element => {
       categories={categories}
       onEditCategories={setCategories}
       onSubmitClick={handlePost}
-      loading={sending}
-      snackbar={{
-        ...snack,
-        open: snackOpen,
-        onClose: () => setSnackOpen(false),
-      }}
     />
   );
 };
