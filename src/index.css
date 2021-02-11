@@ -157,9 +157,8 @@ amplify-authenticator {
 /**
  * List items group title
  */
-.MuiTypography-subtitle1.list-view-grouped-title {
+.list-view-grouped-title {
   margin: 12px 0;
-  text-align: center;
   font-weight: 600;
 }
 
@@ -207,6 +206,10 @@ amplify-authenticator {
 .MuiAccordionSummary-content {
   flex-direction: column;
   align-items: stretch;
+}
+
+.calendar-item-past-container {
+  background: rgba(0, 0, 0, 0.1);
 }
 
 .output-cost-user-summary-paper {

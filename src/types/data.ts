@@ -1,3 +1,24 @@
+// #region Calondar
+
+export interface IGroupByDateCalendars {
+  [key: string]: ICalendarResponse[];
+}
+
+export interface ICalendarBase {
+  date: string;
+  name: string;
+  comment: string;
+}
+
+export interface ICalendar extends ICalendarBase {
+  id: string;
+}
+
+export interface ICalendarResponse extends ICalendar {
+  user: string;
+}
+// #endregion
+
 // #region Category
 export interface ICategory {
   id: string;

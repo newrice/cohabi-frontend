@@ -1,6 +1,6 @@
-import { ITodo } from "../../src/types";
+import { ITodo } from "../../types";
 
-const data: ITodo[] = [
+export const todosData: ITodo[] = [
   {
     id: "TODO_1",
     name: "家具購入",
@@ -26,4 +26,4 @@ const data: ITodo[] = [
     done: true,
   },
 ];
-export default data;
+export default todosData;

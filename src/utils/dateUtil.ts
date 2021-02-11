@@ -19,7 +19,7 @@ export const dateToString = (date: Date): DateStrObject => ({
  * Returns string witch is formatted as yyyy/MM/dd
  * @param date if dont pass, use now
  */
-export const getDateString = (date?: Date): string => {
+export const getDateString = (date?: Date | null): string => {
   let now = new Date();
   if (date) {
     now = date;

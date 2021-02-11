@@ -1,8 +1,8 @@
 import React from "react";
 import SwipeableViews from "react-swipeable-views";
 import { cloneDeep } from "lodash";
-import { SwipeDelete, SwipeDone, SwipeUndone } from "./SwipeDiv";
 import TodoItem from "./TodoItem";
+import { SwipeDelete, SwipeDone, SwipeUndone } from "../../component/parts";
 import { ITodo } from "../../types";
 
 interface ISwipeableTodoItem {

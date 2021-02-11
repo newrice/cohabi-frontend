@@ -4,7 +4,7 @@ import Amplify from "aws-amplify";
 import { onAuthUIStateChange, AuthState } from "@aws-amplify/ui-components";
 import Router from "./Route";
 import Header from "./component/header";
-import { BasicCircuration } from "./component/circuration";
+import { SimpleCircuration, SimpleSnackBar } from "./component/parts";
 import { setAuthState } from "./features/auth/authSlice";
 import {
   closeSnack,
@@ -20,7 +20,6 @@ import {
 } from "./features/user/userSlice";
 import cognitoConfig from "./settings/auth-settings";
 import { useStyles } from "./settings/themes";
-import { BasicSnackbar } from "./component/snackbar";
 
 Amplify.configure(cognitoConfig);
 
@@ -34,8 +33,8 @@ const Feedback = (): JSX.Element => {
   const snackbar = snackstate ? { ...snackstate, onClose } : null;
   return (
     <>
-      <BasicCircuration open={progress} />
-      <BasicSnackbar snackbar={snackbar} />
+      <SimpleCircuration open={progress} />
+      <SimpleSnackBar snackbar={snackbar} />
     </>
   );
 };
