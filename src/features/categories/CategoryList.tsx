@@ -10,7 +10,6 @@ import DragHandleIcon from "@material-ui/icons/DragHandle";
 import clone from "lodash/cloneDeep";
 import {
   endAddornmentClass,
-  IN999CategoryItem,
   INormalCategoryItem,
   N999CategoryItem,
   NormalCategoryItem,
@@ -50,13 +49,6 @@ const DragHandle = SortableHandle(
   ),
 );
 
-const SortableN999 = SortableElement((props: IN999CategoryItem) => (
-  <div>
-    <DragHandle iconElem={<SvgIcon />} disabled />
-    <N999CategoryItem {...props} />
-  </div>
-));
-
 const SortableNormal = SortableElement((props: INormalCategoryItem) => (
   <div>
     <DragHandle iconElem={<DragHandleIcon />} />
@@ -93,13 +85,14 @@ const CategoryList = ({
     <div>
       {items.map((category, index) =>
         isN999(category) ? (
-          <SortableN999
-            disabled
-            key={`category-item-${category.id}`}
-            item={category}
-            index={index}
-            onAddClick={handleAdd}
-          />
+          <div>
+            <DragHandle iconElem={<SvgIcon />} disabled />
+            <N999CategoryItem
+              key={`category-item-${category.id}`}
+              item={category}
+              onAddClick={handleAdd}
+            />
+          </div>
         ) : (
           <SortableNormal
             key={`category-item-${category.id}`}

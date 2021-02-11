@@ -8,6 +8,8 @@ import { createCategories, fetchCategories } from "../../api";
 import settings from "../../settings";
 import { ICategory, IApiResponseBase } from "../../types";
 import { createSnackState, isApiError } from "../../utils";
+// FIXME:
+// import { categoriesData } from "../../__mock__/data";
 
 const filterNew = (categories: ICategory[]): ICategory[] =>
   categories.map(item =>
@@ -36,6 +38,7 @@ const CategoriesController = (): JSX.Element => {
             : [],
         );
       }
+      // setCategories(categoriesData);
       dispatch(setProgress(false));
     };
     getDatas();
