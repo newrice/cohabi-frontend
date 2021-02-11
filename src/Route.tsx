@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { AuthState } from "@aws-amplify/ui-components";
 import Auth from "./features/auth/Auth";
 import Home from "./home";
+import Calendars from "./features/calendars";
 import Categories from "./features/categories";
 import Todos from "./features/todos";
 import Profile from "./features/user";
@@ -25,6 +26,9 @@ const AppWithRoute = (props: WithRouteProps): JSX.Element => {
           <Home />
         </Route>
         <Auth>
+          <Route exact path="/calendars">
+            <Calendars />
+          </Route>
           <Route exact path="/categories">
             <Categories />
           </Route>

@@ -1,34 +1,31 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { IconButton, Toolbar, Typography } from "@material-ui/core";
+import { IconButton } from "@material-ui/core";
 import FilterIcon from "@material-ui/icons/HorizontalSplit";
+import FeatureHeader from "../../component/molecules/FeatureHeader";
 
-interface IHeader {
+interface ITodoHeader {
   showDisabled: boolean;
   onShowDisabledChange: () => void;
 }
 
-const pageTitleClass = "flex-auto";
-
-const Header = ({
+const TodoHeader = ({
   showDisabled,
   onShowDisabledChange,
-}: IHeader): JSX.Element => {
+}: ITodoHeader): JSX.Element => {
   const { t } = useTranslation();
+  const toggleShowButton = (
+    <IconButton
+      color={showDisabled ? "secondary" : "default"}
+      edge="end"
+      onClick={onShowDisabledChange}
+    >
+      <FilterIcon />
+    </IconButton>
+  );
   return (
-    <Toolbar>
-      <Typography variant="h6" className={pageTitleClass}>
-        {t("HEADER_TODO")}
-      </Typography>
-      <IconButton
-        color={showDisabled ? "secondary" : "default"}
-        edge="end"
-        onClick={onShowDisabledChange}
-      >
-        <FilterIcon />
-      </IconButton>
-    </Toolbar>
+    <FeatureHeader title={t("HEADER_TODO")} endAdornment={toggleShowButton} />
   );
 };
 
-export default Header;
+export default TodoHeader;

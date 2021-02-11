@@ -7,7 +7,7 @@ import {
   Theme,
 } from "@material-ui/core";
 
-interface IBasicCircuration {
+interface ISimpleCircuration {
   open: boolean;
 }
 
@@ -19,7 +19,9 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-const BasicCircuration = ({ open }: IBasicCircuration): JSX.Element => {
+export const SimpleCircuration = ({
+  open,
+}: ISimpleCircuration): JSX.Element => {
   const classes = useStyles();
   return (
     <Backdrop open={open} className={classes.backdrop}>
@@ -28,4 +30,4 @@ const BasicCircuration = ({ open }: IBasicCircuration): JSX.Element => {
   );
 };
 
-export default BasicCircuration;
+export default SimpleCircuration;

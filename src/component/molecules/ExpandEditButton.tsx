@@ -3,23 +3,29 @@ import { useTranslation } from "react-i18next";
 import { Button, IconButton } from "@material-ui/core";
 import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 
-interface ITodoItemAction {
+interface IExpandEditButton {
   submitButtonDisabled?: boolean;
+  cancelButtonDisabled?: boolean;
   onCancelClick: () => void;
   onSubmitClick: () => void;
   onExpandLessClick: () => void;
 }
 
-const TodoItemAction = ({
+export const ExpandEditButton = ({
+  cancelButtonDisabled,
   submitButtonDisabled,
   onCancelClick,
   onExpandLessClick,
   onSubmitClick,
-}: ITodoItemAction): JSX.Element => {
+}: IExpandEditButton): JSX.Element => {
   const { t } = useTranslation();
   return (
     <>
-      <Button size="small" onClick={onCancelClick}>
+      <Button
+        size="small"
+        disableTouchRipple={cancelButtonDisabled}
+        onClick={onCancelClick}
+      >
         {t("LABEL_CANCEL")}
       </Button>
       <Button
@@ -37,8 +43,9 @@ const TodoItemAction = ({
   );
 };
 
-TodoItemAction.defaultProps = {
+ExpandEditButton.defaultProps = {
+  cancelButtonDisabled: false,
   submitButtonDisabled: false,
 };
 
-export default TodoItemAction;
+export default ExpandEditButton;

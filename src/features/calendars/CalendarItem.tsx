@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import {
   Paper,
   Accordion,
@@ -7,19 +7,22 @@ import {
   AccordionActions,
 } from "@material-ui/core";
 import clsx from "clsx";
-import TodoItemContent from "./TodoItemContent";
-import TodoItemTitle from "./TodoItemTitle";
+import CalendarItemContent from "./CalendarItemContent";
+import CalendarItemTitle from "./CalendarItemTitle";
 import { ExpandEditButton } from "../../component/molecules";
-import { ITodo } from "../../types";
+import { ICalendar, ICalendarResponse, IUser } from "../../types";
+import { getDateString } from "../../utils";
 
 const accordionDetailsClass = clsx("column-container", "ai-strech-container");
 
-interface ITodoItem {
-  item: ITodo;
-  onSubmit: (item: ITodo) => void;
+interface ICalendarItem {
+  item: ICalendarResponse;
+  user?: IUser | null;
+  onSubmit: (item: ICalendar) => void;
 }
-const TodoItem = ({ item, onSubmit }: ITodoItem): JSX.Element => {
-  let prevItem: ITodo = { ...item };
+const CalendarItem = ({ item, user, onSubmit }: ICalendarItem): JSX.Element => {
+  let prevItem: ICalendarResponse = { ...item };
+  const [date, setDate] = useState<string>(item.date);
   const [name, setName] = useState<string>(item.name);
   const [comment, setComment] = useState<string>(item.comment);
   const [expanded, setExpanded] = useState<boolean>(false);
@@ -27,8 +30,14 @@ const TodoItem = ({ item, onSubmit }: ITodoItem): JSX.Element => {
   useEffect(() => {
     prevItem = { ...item };
   }, []);
+  const isPast = useMemo(() => prevItem.date < getDateString(), [
+    prevItem.date,
+  ]);
 
   const handleEditCancel = () => {
+    if (date !== prevItem.date) {
+      setDate(prevItem.date);
+    }
     if (name !== prevItem.name) {
       setName(prevItem.name);
     }
@@ -40,37 +49,48 @@ const TodoItem = ({ item, onSubmit }: ITodoItem): JSX.Element => {
   const handleExpand = () => setExpanded(true);
   const handleExpandLess = () => setExpanded(false);
 
+  const handleDateChange = (value: Date | null) =>
+    setDate(getDateString(value));
   const handleNameChange = (value: string) => setName(value);
   const handleCommentChange = (value: string) => setComment(value);
 
-  const handleSubmit = () => onSubmit({ ...item, name, comment });
+  const handleSubmit = () => onSubmit({ ...item, date, name, comment });
   return (
     <Paper key={`todo-accordinon-wrapper-${item.id}`}>
       <Accordion
         elevation={0}
+        className={isPast ? "calendar-item-past-container" : ""}
         key={`todo-accordinon-${item.id}`}
         expanded={expanded}
         onChange={handleExpandChange}
       >
         <AccordionSummary>
-          <TodoItemTitle
-            disabled={item.done}
+          <CalendarItemTitle
+            avatarSrc={user && user.avatar ? user.avatar[0] : ""}
+            avatarText={user ? user.name[0] : ""}
+            // disabled={isPast}
             value={name}
             onClick={handleExpand}
             onChange={handleNameChange}
           />
         </AccordionSummary>
         <AccordionDetails className={accordionDetailsClass}>
-          <TodoItemContent
-            disabled={item.done}
-            value={comment}
-            onChange={handleCommentChange}
+          <CalendarItemContent
+            // dateDisabled={isPast}
+            // commentDisabled={isPast}
+            date={date}
+            comment={comment}
+            onDateChange={handleDateChange}
+            onCommentChange={handleCommentChange}
           />
         </AccordionDetails>
         <AccordionActions>
           <ExpandEditButton
-            cancelButtonDisabled={item.done}
-            submitButtonDisabled={item.done || !item.id || !item.name}
+            // cancelButtonDisabled={isPast}
+            submitButtonDisabled={
+              // isPast ||
+              !item.id || !item.date || !item.name
+            }
             onCancelClick={handleEditCancel}
             onExpandLessClick={handleExpandLess}
             onSubmitClick={handleSubmit}
@@ -80,4 +100,7 @@ const TodoItem = ({ item, onSubmit }: ITodoItem): JSX.Element => {
     </Paper>
   );
 };
-export default TodoItem;
+CalendarItem.defaultProps = {
+  user: null,
+};
+export default CalendarItem;

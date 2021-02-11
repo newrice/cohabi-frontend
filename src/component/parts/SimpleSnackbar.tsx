@@ -1,14 +1,16 @@
 import React from "react";
-import { ISnackBarBase, SnackBar } from "../parts";
+import { ISnackBarBase, SnackBar } from ".";
 
 interface ISnackBarState extends ISnackBarBase {
   onClose: () => void;
 }
-interface IBasicSnackBar {
+interface ISimpleSnackBar {
   snackbar: ISnackBarState | null;
 }
 
-const BasicSnackBar = ({ snackbar }: IBasicSnackBar): JSX.Element | null =>
+export const SimpleSnackBar = ({
+  snackbar,
+}: ISimpleSnackBar): JSX.Element | null =>
   snackbar && (
     <SnackBar
       open
@@ -19,4 +21,4 @@ const BasicSnackBar = ({ snackbar }: IBasicSnackBar): JSX.Element | null =>
       handleClose={snackbar.onClose}
     />
   );
-export default BasicSnackBar;
+export default SimpleSnackBar;

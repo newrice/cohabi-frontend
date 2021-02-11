@@ -52,13 +52,13 @@ const menuItems: MenuObject[] = [
     linkTo: "/todos",
     icon: <PlaylistAddCheckIcon />,
   },
-  // {
-  //   key: "calendar",
-  //   priority: 2,
-  //   label: "MENU_LABEL_CALENDAR",
-  //   linkTo: "/calendars",
-  //   icon: <EventAvailableIcon />,
-  // },
+  {
+    key: "calendar",
+    priority: 2,
+    label: "MENU_LABEL_CALENDAR",
+    linkTo: "/calendars",
+    icon: <EventAvailableIcon />,
+  },
 ];
 
 export default menuItems;
