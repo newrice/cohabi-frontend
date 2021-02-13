@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import CostDetailField from "./CostDetailField";
 import { createCost } from "../../../api";
 import { InsertButton } from "../../../component/molecules";
@@ -39,6 +40,7 @@ const NewCostForm = React.memo(
     onRequestEnd,
   }: INewCostForm): JSX.Element => {
     console.log("*** NewCostDetailForm");
+    const { t } = useTranslation();
     const [cost, setCost] = useState<ICost>(baseCost(currentUserId));
 
     useEffect(() => {
@@ -75,7 +77,7 @@ const NewCostForm = React.memo(
           categories={categories}
         />
         <InsertButton
-          label="save"
+          label={t("LABEL_SAVE")}
           onClick={handlePost}
           className="input-field-base"
         />

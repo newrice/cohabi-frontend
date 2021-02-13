@@ -4,7 +4,7 @@ import { isEqual } from "../../../utils";
 import NewCostForm, { INewCostForm } from "../components/NewCostForm";
 import { InsideAppDialog, SimpleFab } from "../../../component/parts";
 
-const paperClass = "underlay-paper-base";
+const paperClass = "underlay-paper-base input-dialog-base";
 
 const NewCostDialog = React.memo((props: INewCostForm): JSX.Element => {
   const [open, setOpen] = useState<boolean>(false);

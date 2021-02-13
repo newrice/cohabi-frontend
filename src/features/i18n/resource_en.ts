@@ -8,6 +8,7 @@ const en: II18n = {
   MSG_PASSWORD_ALLOWED_CHARS:
     "Must contain 1 lower case and 1 numeric character. ",
   MSG_CLICK_HERE: "Click here",
+  MSG_SELECT_ITEM: "Please select Item.",
   OUTPUT_USER_SUMMARY_HAPPY: "is Happy!",
   OUTPUT_USER_SUMMARY_SEND: "sends",
   OUTPUT_USER_SUMMARY_RECIEVE: "recieves",

@@ -11,7 +11,7 @@ import { fetchCategories, fetchUsers } from "../../api";
 import { ICategory, IUser, TCostsQueryParam } from "../../types";
 import { createSnackState, isApiError } from "../../utils";
 // FIXME: remove
-import { categoriesData, usersData } from "../../__mock__/data";
+// import { categoriesData, usersData } from "../../__mock__/data";
 
 const InputController = (): JSX.Element => {
   const dispatch = useDispatch();

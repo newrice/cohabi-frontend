@@ -5,6 +5,7 @@ import clsx from "clsx";
 import { isUndefined } from "lodash";
 import { SimpleButton } from "../parts";
 import { TCrudTypes } from "../../types";
+import { isEqual } from "../../utils";
 
 export interface ICrudButton {
   key?: string;
@@ -21,7 +22,7 @@ interface ICrudButtonBase {
 interface IDefaults {
   tKey: string;
   defaultKey: string;
-  color: PropTypes.Color;
+  color?: PropTypes.Color;
   variant: "text" | "outlined" | "contained";
 }
 type TButtonDefaults = {
@@ -56,29 +57,32 @@ const defaultProps: TButtonDefaults = {
   delete: {
     tKey: "LABEL_DELETE",
     defaultKey: deleteKey,
-    color: "secondary",
-    variant: "contained",
+    // color: "secondary",
+    variant: "outlined",
   },
 };
 
-const BaseButton = ({ type, props }: ICrudButtonBase): JSX.Element => {
-  const { t } = useTranslation();
-  const { key, label, visible, disable, className, onClick } = props;
-  const { tKey, defaultKey, color, variant } = defaultProps[type];
-  return (
-    <SimpleButton
-      label={label || t(tKey)}
-      key={key || defaultKey}
-      testid={key || defaultKey}
-      visible={isUndefined(visible) ? true : visible}
-      disabled={isUndefined(disable) ? false : disable}
-      color={color}
-      variant={variant}
-      onClick={onClick}
-      className={className}
-    />
-  );
-};
+const BaseButton = React.memo(
+  ({ type, props }: ICrudButtonBase): JSX.Element => {
+    const { t } = useTranslation();
+    const { key, label, visible, disable, className, onClick } = props;
+    const { tKey, defaultKey, color, variant } = defaultProps[type];
+    return (
+      <SimpleButton
+        label={label || t(tKey)}
+        key={key || defaultKey}
+        testid={key || defaultKey}
+        visible={isUndefined(visible) ? true : visible}
+        disabled={isUndefined(disable) ? false : disable}
+        color={color}
+        variant={variant}
+        onClick={onClick}
+        className={className}
+      />
+    );
+  },
+  isEqual,
+);
 
 export const InsertButton = (props: ICrudButton): JSX.Element => (
   <BaseButton type="insert" props={props} />

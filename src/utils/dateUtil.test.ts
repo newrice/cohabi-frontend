@@ -5,6 +5,8 @@ import {
   dateStringSplit,
   dayOfWeekStr,
   getDateString,
+  getPrevMonth,
+  getNextMonth,
 } from "./dateUtil";
 
 describe("* dateToString", () => {
@@ -125,5 +127,34 @@ describe("* getDateString", () => {
     const s = getDateString();
     const exp = getDateStr(d); // test util
     expect(s).toBe(exp);
+  });
+
+  describe("* date prev next", () => {
+    const omisoka = new Date(2020, 11, 31);
+    const gantan = new Date(2019, 0, 1);
+    test("* next omisoka", () => {
+      const next = getNextMonth(omisoka);
+      expect(next.getFullYear()).toBe(2021);
+      expect(next.getMonth()).toBe(0);
+      expect(next.getDate()).toBe(31);
+    });
+    test("* next gantan", () => {
+      const next = getNextMonth(gantan);
+      expect(next.getFullYear()).toBe(2019);
+      expect(next.getMonth()).toBe(1);
+      expect(next.getDate()).toBe(1);
+    });
+    test("* prev omisoka", () => {
+      const prev = getPrevMonth(omisoka);
+      expect(prev.getFullYear()).toBe(2020);
+      expect(prev.getMonth()).toBe(10);
+      expect(prev.getDate()).toBe(30);
+    });
+    test("* prev gantan", () => {
+      const prev = getPrevMonth(gantan);
+      expect(prev.getFullYear()).toBe(2018);
+      expect(prev.getMonth()).toBe(11);
+      expect(prev.getDate()).toBe(1);
+    });
   });
 });

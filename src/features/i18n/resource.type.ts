@@ -5,6 +5,7 @@ export interface II18n {
   MSG_USER_ID_ALLOWED_CHARS: string;
   MSG_PASSWORD_ALLOWED_CHARS: string;
   MSG_CLICK_HERE: string;
+  MSG_SELECT_ITEM: string;
   OUTPUT_USER_SUMMARY_HAPPY: string;
   OUTPUT_USER_SUMMARY_SEND: string;
   OUTPUT_USER_SUMMARY_RECIEVE: string;

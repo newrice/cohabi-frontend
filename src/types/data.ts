@@ -35,6 +35,10 @@ export interface ICostResponse extends ICost {
   id: string;
 }
 export type TCostChangeHandler = (key: TKeyOfCost, value: string) => void;
+export interface IGroupedCostList {
+  [key: string]: ICostResponse[];
+}
+export type TCostsViewMode = "date" | "user" | "category";
 // #endregion
 
 // #region Todo

@@ -8,6 +8,7 @@ const ja: II18n = {
   MSG_PASSWORD_ALLOWED_CHARS:
     "小文字数字を1文字以上含む半角英数で入力してください。",
   MSG_CLICK_HERE: "こちらから",
+  MSG_SELECT_ITEM: "アイテムを選択してください",
   OUTPUT_USER_SUMMARY_HAPPY: "はハッピー!",
   OUTPUT_USER_SUMMARY_SEND: "は払う",
   OUTPUT_USER_SUMMARY_RECIEVE: "は受け取る",
