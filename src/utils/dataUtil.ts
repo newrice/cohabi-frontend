@@ -1,4 +1,5 @@
 import _ from "lodash";
+import equal from "fast-deep-equal";
 import { ISnackBarBase } from "../component/parts";
 import { ICategory, IUser } from "../types";
 
@@ -40,3 +41,5 @@ export const isN999 = (item?: string | ICategory): boolean => {
   }
   return n999.includes(item.id);
 };
+
+export const isEqual = <T>(a: T, b: T): boolean => equal(a, b);
