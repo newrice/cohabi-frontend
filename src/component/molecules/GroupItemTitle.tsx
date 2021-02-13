@@ -9,7 +9,7 @@ interface IGroupItemTitle {
   align?: PropTypes.Alignment;
 }
 
-const GroupItemTitle = ({
+export const GroupItemTitle = ({
   title,
   className,
   variant,

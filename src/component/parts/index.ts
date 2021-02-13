@@ -1,5 +1,6 @@
 export * from "./DatePicker";
 export * from "./LabeledSelect";
+export * from "./MemoizedTextField";
 export * from "./SimpleButton";
 export * from "./SimpleCircuration";
 export * from "./SimpleFab";

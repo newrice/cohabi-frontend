@@ -1,21 +1,17 @@
 // #region Calondar
-
-export interface IGroupByDateCalendars {
-  [key: string]: ICalendarResponse[];
-}
-
 export interface ICalendarBase {
   date: string;
   name: string;
   comment: string;
 }
-
 export interface ICalendar extends ICalendarBase {
   id: string;
 }
-
 export interface ICalendarResponse extends ICalendar {
   user: string;
+}
+export interface IGroupByDateCalendars {
+  [key: string]: ICalendarResponse[];
 }
 // #endregion
 
@@ -25,6 +21,24 @@ export interface ICategory {
   name: string;
   disabled: boolean;
 }
+// #endregion
+
+// #region Costs
+export type TKeyOfCost = "date" | "value" | "category" | "comment";
+export type ICostBase = {
+  [key in TKeyOfCost]: string;
+};
+export interface ICost extends ICostBase {
+  user: string;
+}
+export interface ICostResponse extends ICost {
+  id: string;
+}
+export type TCostChangeHandler = (key: TKeyOfCost, value: string) => void;
+export interface IGroupedCostList {
+  [key: string]: ICostResponse[];
+}
+export type TCostsViewMode = "date" | "user" | "category";
 // #endregion
 
 // #region Todo
@@ -66,4 +80,13 @@ export interface IGroup extends IGroupBase {
 export interface IResponseGroup extends IGroup {
   users: string[];
 }
+// #endregion
+
+// #region Util
+export interface KeyValuePair {
+  id: string | number;
+  name: string | number | undefined;
+  disabled?: boolean;
+}
+export type TCrudTypes = "insert" | "update" | "delete";
 // #endregion

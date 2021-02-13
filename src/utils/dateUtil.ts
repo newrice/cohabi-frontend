@@ -1,4 +1,5 @@
 import _ from "lodash";
+import { add, sub } from "date-fns";
 
 interface DateStrObject {
   year: string;
@@ -66,4 +67,19 @@ export const dateStringSplit = (date: string): DateStrObject => {
   return dateToString(dateObj);
 };
 
+export const getPrevMonth = (date: Date): Date =>
+  sub(new Date(date), { months: 1 });
+
+export const getNextMonth = (date: Date): Date =>
+  add(new Date(date), { months: 1 });
+
 export const dayOfWeekStr = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+export const getDayOfWeekStr = (date: string | Date | null): string => {
+  if (typeof date === "string") {
+    return dayOfWeekStr[stringToDate(date).getDay()];
+  }
+  if (date instanceof Date) {
+    return dayOfWeekStr[date.getDay()];
+  }
+  return dayOfWeekStr[new Date().getDay()];
+};

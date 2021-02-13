@@ -22,20 +22,20 @@ const menuItems: MenuObject[] = [
     label: "MENU_LABEL_KAKEIBO",
     icon: <AccountBalanceWalletIcon />,
     children: [
-      //     {
-      //       key: "input",
-      //       priority: 0,
-      //       label: "MENU_LABEL_FORM",
-      //       icon: <EditIcon />,
-      //       linkTo: "/input",
-      //     },
-      //     {
-      //       key: "output",
-      //       priority: 1,
-      //       label: "MENU_LABEL_LIST",
-      //       linkTo: "/output",
-      //       icon: <ListIcon />,
-      //     },
+      {
+        key: "input",
+        priority: 0,
+        label: "MENU_LABEL_FORM",
+        icon: <EditIcon />,
+        linkTo: "/costs/new",
+      },
+      {
+        key: "output",
+        priority: 1,
+        label: "MENU_LABEL_LIST",
+        linkTo: "/costs/list",
+        icon: <ListIcon />,
+      },
       {
         key: "manage_category",
         priority: 2,

@@ -11,17 +11,16 @@ import clsx from "clsx";
 const getTestId = (testId: string, suffix: string | number): any => ({
   "data-testid": `${testId}-${suffix}`,
 });
-interface ILabeledSelect extends SelectProps {
+export interface ILabeledSelect extends SelectProps {
   label: string;
   className?: string;
   labelClass?: string;
   selectClass?: string;
   value: unknown;
-  children: React.ReactNode;
+  children?: React.ReactNode;
   testid?: string;
 }
 const LabeledSelectClass = "parts-labeled-class";
-// eslint-disable-next-line import/prefer-default-export
 export const LabeledSelect = ({
   label,
   className,
@@ -62,6 +61,7 @@ export const LabeledSelect = ({
 
 LabeledSelect.defaultProps = {
   className: undefined,
+  children: null,
   labelClass: undefined,
   selectClass: undefined,
   testid: undefined,

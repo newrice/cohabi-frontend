@@ -6,6 +6,7 @@ import Auth from "./features/auth/Auth";
 import Home from "./home";
 import Calendars from "./features/calendars";
 import Categories from "./features/categories";
+import Costs from "./features/costs";
 import Todos from "./features/todos";
 import Profile from "./features/user";
 
@@ -31,6 +32,9 @@ const AppWithRoute = (props: WithRouteProps): JSX.Element => {
           </Route>
           <Route exact path="/categories">
             <Categories />
+          </Route>
+          <Route exact path="/costs/:mode">
+            <Costs />
           </Route>
           <Route exact path="/settings">
             <Profile />
