@@ -13,6 +13,7 @@ import Profile from "./features/user";
 interface WithRouteProps {
   children: React.ReactNode;
 }
+
 const AppWithRoute = (props: WithRouteProps): JSX.Element => {
   const { children } = props;
   // console.log(props)
@@ -33,7 +34,7 @@ const AppWithRoute = (props: WithRouteProps): JSX.Element => {
           <Route exact path="/categories">
             <Categories />
           </Route>
-          <Route exact path="/costs/:mode">
+          <Route exact path="/costs">
             <Costs />
           </Route>
           <Route exact path="/settings">

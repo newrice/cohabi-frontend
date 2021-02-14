@@ -1,5 +1,6 @@
 import React from "react";
-import { Typography } from "@material-ui/core";
+import { IconButton, Typography } from "@material-ui/core";
+import FileCopyIcon from "@material-ui/icons/FileCopy";
 import { TFunction } from "i18next";
 import { groupBy } from "lodash";
 import AbstractSumary from "./AbstractSummary";
@@ -26,19 +27,38 @@ const groupByKey = (costs: ICostBase[], key: string) =>
   (groupBy(costs, key) as IGroupedCostList) || {};
 
 export class UserSummary extends AbstractSumary {
+  private getDiff = (id: string): number => {
+    const grouped = groupByKey(this.costs, "user");
+    return equaler(this.costs, this.users.length) - getTotal(grouped[id] || []);
+  };
+
+  private handleCopy = (id: string) => () => {
+    navigator.clipboard.writeText(String(this.getDiff(id))).then(
+      () => {
+        console.log("Async: Copying to clipboard was successful!");
+      },
+      err => {
+        console.error("Async: Could not copy text: ", err);
+      },
+    );
+  };
+
   public getSummary = (t: TFunction): JSX.Element => {
     const getUserPaymentString = (id: string) => {
-      const grouped = groupByKey(this.costs, "user");
-      const diff =
-        equaler(this.costs, this.users.length) - getTotal(grouped[id] || []);
+      const diff = this.getDiff(id);
       return `${getUserName(this.users, id)} ${t(
         getPaymentLabelKey(diff),
       )} ${ph(t("PH_YEN"), [thousandCommas(Math.abs(diff))])}`;
     };
     const child = this.users.map(user => (
-      <Typography key={`summary-user-${user.id}`}>
-        {getUserPaymentString(user.id)}
-      </Typography>
+      <div className="row-container jc-center-container ai-center-container">
+        <Typography key={`summary-user-${user.id}`}>
+          {getUserPaymentString(user.id)}
+        </Typography>
+        <IconButton onClick={this.handleCopy(user.id)}>
+          <FileCopyIcon />
+        </IconButton>
+      </div>
     ));
     return <>{this.wrap(this.getTitle(t), child)}</>;
   };
