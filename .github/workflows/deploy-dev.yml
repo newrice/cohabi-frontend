@@ -46,3 +46,7 @@ jobs:
         run: yarn build
         env:
           CI: ""
+      - name: Copy to S3
+        run: aws s3 sync ./build s3://${{ secrets.STAGING_DIST_BUCKET_NAME }} --delete
+      - name: Deploy to Staging
+        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.STAGING_CDN_ID }} --paths "/*"

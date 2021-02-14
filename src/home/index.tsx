@@ -18,7 +18,7 @@ const HomeController = (): JSX.Element => {
         <Grid container direction="column" alignItems="center">
           <Grid item xs={10}>
             <div className={formClass}>
-              <Link to="/output" className={linkClass}>
+              <Link to="/costs/list" className={linkClass}>
                 <Button
                   color="primary"
                   variant="contained"
