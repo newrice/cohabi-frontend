@@ -17,6 +17,7 @@ import {
 } from "../../../utils";
 import CostGroupedList from "../components/CostGroupedList";
 import ViewModeButtons from "./ViewModeButtons";
+import Summary from "./Summary";
 
 interface ICostLists {
   costs: ICostResponse[];
@@ -36,7 +37,7 @@ export const CostLists = React.memo(
     editable,
     onSelect,
   }: ICostLists): JSX.Element => {
-    const [mode, setMode] = useState<TCostsViewMode>("date");
+    const [mode, setMode] = useState<TCostsViewMode>("user");
     const getGroupTitle = useCallback(
       (key: string): string => {
         switch (mode) {
@@ -56,6 +57,12 @@ export const CostLists = React.memo(
       <>
         <ViewModeButtons currentMode={mode} onClick={setMode} />
         <div className="column-container ai-center-container">
+          <Summary
+            mode={mode}
+            costs={costs}
+            categories={categories}
+            users={users}
+          />
           <CostGroupedList
             data={sortByKey(groupByKey(costs, mode))}
             editable={editable}

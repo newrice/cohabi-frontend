@@ -23,7 +23,9 @@ export const SummaryAccordion = React.memo(
         <AccordionSummary className={summaryTotalClass}>
           <Typography>{title}</Typography>
         </AccordionSummary>
-        <AccordionDetails>{children}</AccordionDetails>
+        <AccordionDetails className="column-container">
+          {children}
+        </AccordionDetails>
       </Accordion>
     </Paper>
   ),
