@@ -1,5 +1,5 @@
-export type TKeyOfCostsQueryParam = "mode";
-export type TValueOfCostsParam = "list" | "new";
+export type TKeyOfCostsQueryParam = "id";
+export type TValueOfCostsQueryParam = "new" | string | null;
 export type TCostsQueryParam = {
-  [key in TKeyOfCostsQueryParam]: TValueOfCostsParam;
+  [key in TKeyOfCostsQueryParam]: TValueOfCostsQueryParam;
 };

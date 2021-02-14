@@ -27,13 +27,13 @@ const menuItems: MenuObject[] = [
         priority: 0,
         label: "MENU_LABEL_FORM",
         icon: <EditIcon />,
-        linkTo: "/costs/new",
+        linkTo: "/costs?id=new",
       },
       {
         key: "output",
         priority: 1,
         label: "MENU_LABEL_LIST",
-        linkTo: "/costs/list",
+        linkTo: "/costs",
         icon: <ListIcon />,
       },
       {

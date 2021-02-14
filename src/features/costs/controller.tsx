@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
 import { isArray, isEmpty } from "lodash";
 import ListCostController from "./list/Controller";
 import NewCostPage from "./new/NewCostPage";
@@ -13,9 +12,8 @@ import { createSnackState, isApiError } from "../../utils";
 // FIXME: remove
 // import { categoriesData, usersData } from "../../__mock__/data";
 
-const InputController = (): JSX.Element => {
+const CostsController = ({ id }: TCostsQueryParam): JSX.Element => {
   const dispatch = useDispatch();
-  const params = useParams<TCostsQueryParam>();
   const currentGroup = useSelector(selectCurrentGroup);
   const currentUser = useSelector(selectCurrentUser);
   const [categories, setCategories] = useState<ICategory[]>([]);
@@ -70,11 +68,11 @@ const InputController = (): JSX.Element => {
   return (
     <>
       {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-      {params.mode === "new" && <NewCostPage {...props} />}
+      {id === "new" && <NewCostPage {...props} />}
       {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-      {params.mode === "list" && <ListCostController {...props} />}
+      {!id && <ListCostController {...props} />}
     </>
   );
 };
 
-export default InputController;
+export default CostsController;
