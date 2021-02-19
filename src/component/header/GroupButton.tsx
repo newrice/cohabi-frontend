@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { AuthState } from "@aws-amplify/ui-components";
 import { createStyles, IconButton, makeStyles, Theme } from "@material-ui/core";
 import GroupIcon from "@material-ui/icons/Group";
-import GroupController from "../../features/group/controller";
 import { selectAuthState } from "../../features/auth/authSlice";
+import { setIsGroupDialogOpen } from "../../features/group/groupSlice";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -27,16 +27,12 @@ const useStyles = makeStyles((theme: Theme) =>
 
 // eslint-disable-next-line import/prefer-default-export
 export const GroupMenu = (): JSX.Element => {
+  const dispatch = useDispatch();
   const authState = useSelector(selectAuthState);
   const classes = useStyles();
-  const [drawerActive, setDrawerActive] = useState(false);
 
   const handleClickOpen = () => {
-    setDrawerActive(true);
-  };
-
-  const handleClose = (): void => {
-    setDrawerActive(false);
+    dispatch(setIsGroupDialogOpen(true));
   };
 
   return (
@@ -50,7 +46,6 @@ export const GroupMenu = (): JSX.Element => {
       >
         <GroupIcon />
       </IconButton>
-      <GroupController active={drawerActive} onDeactive={handleClose} />
     </>
   );
 };

@@ -3,6 +3,7 @@ import { II18n } from "./resource.type";
 const ja: II18n = {
   MSG_SUCCESS: "成功しました！",
   MSG_FAILED: "失敗しました",
+  MSG_CONFIRM_EXIT_GROUP: "退会しますか？",
   MSG_CREATE_ADMIN_ACCOUNT: "管理アカウントを作成します。",
   MSG_USER_ID_ALLOWED_CHARS: "半角英数と.-_で入力してください。",
   MSG_PASSWORD_ALLOWED_CHARS:

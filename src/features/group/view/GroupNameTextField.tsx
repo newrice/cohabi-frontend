@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import { StandardTextFieldProps, TextField } from "@material-ui/core";
+import { StandardTextFieldProps } from "@material-ui/core";
+import { MemoizedTextField } from "../../../component/parts";
 
 interface IGroupNameField extends StandardTextFieldProps {
   name: string;
@@ -14,11 +15,17 @@ export const GroupNameField = ({
   ...rest
 }: IGroupNameField): JSX.Element => {
   const { t } = useTranslation();
+  const handleNameChange = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      onNameChange(event.target.value);
+    },
+    [],
+  );
   return (
-    <TextField
+    <MemoizedTextField
       label={t("LABEL_GROUP_NAME")}
       value={name}
-      onChange={event => onNameChange(event.target.value)}
+      onChange={handleNameChange}
       // eslint-disable-next-line react/jsx-no-duplicate-props
       inputProps={{ "data-testid": "input-group-name" }}
       // eslint-disable-next-line react/jsx-props-no-spreading

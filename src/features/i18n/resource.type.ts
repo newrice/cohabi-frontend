@@ -1,6 +1,7 @@
 export interface II18n {
   MSG_SUCCESS: string;
   MSG_FAILED: string;
+  MSG_CONFIRM_EXIT_GROUP: string;
   MSG_CREATE_ADMIN_ACCOUNT: string;
   MSG_USER_ID_ALLOWED_CHARS: string;
   MSG_PASSWORD_ALLOWED_CHARS: string;

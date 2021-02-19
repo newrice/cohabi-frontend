@@ -11,7 +11,11 @@ import {
   selectProgress,
   selectSnackState,
 } from "./features/feedback/feedbackSlice";
-import { setCurrentGroup } from "./features/group/groupSlice";
+import {
+  fetchCurrentGroupUsers,
+  selectCurrentGroup,
+  setCurrentGroup,
+} from "./features/group/groupSlice";
 import {
   fetchCurrentUser,
   initialState,
@@ -20,10 +24,13 @@ import {
 } from "./features/user/userSlice";
 import cognitoConfig from "./settings/auth-settings";
 import { useStyles } from "./settings/themes";
+import { fetchCategories } from "./features/categories/categoriesSlice";
+import { isEqual } from "./utils";
+import GroupController from "./features/group/controller";
 
 Amplify.configure(cognitoConfig);
 
-const Feedback = (): JSX.Element => {
+const Feedback = React.memo((): JSX.Element => {
   const dispatch = useDispatch();
   const progress = useSelector(selectProgress);
   const snackstate = useSelector(selectSnackState);
@@ -37,44 +44,57 @@ const Feedback = (): JSX.Element => {
       <SimpleSnackBar snackbar={snackbar} />
     </>
   );
-};
+}, isEqual);
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-const ApplicationContents = (): JSX.Element | null => {
+const ApplicationContents = React.memo((): JSX.Element | null => {
   const classes = useStyles();
   return (
     <div className={classes.root} id="_App_">
       <Router>
         <Header />
       </Router>
+      <GroupController />
       <Feedback />
     </div>
   );
-};
+}, isEqual);
 
 const AppWithAuth = (): JSX.Element => {
+  // console.log("*** AppWithAuth");
   const dispatch = useDispatch();
   const currentUser = useSelector(selectCurrentUser);
+  const currentGroup = useSelector(selectCurrentGroup);
   useEffect(
     () =>
       onAuthUIStateChange(nextAuthState => {
-        // console.log('onAuthUIStateChange called', nextAuthState, authData)
+        // console.log("*** onAuthUIStateChange");
         dispatch(setAuthState(nextAuthState));
         if (nextAuthState === AuthState.SignedIn) {
+          // console.log("--- fetchCurrentUser");
           dispatch(fetchCurrentUser());
         } else {
+          // console.log("--- setCurrentUser to initial");
           dispatch(setCurrentUser(initialState));
         }
       }),
-    [dispatch],
+    [],
   );
 
   useEffect(() => {
-    // console.log('top', currentUser)
+    // console.log("top", currentUser);
     if (currentUser && currentUser.groups) {
       dispatch(setCurrentGroup(currentUser.groups[0] || { id: "", name: "" }));
     }
-  }, [currentUser, dispatch]);
+  }, [currentUser.id]);
+
+  useEffect(() => {
+    // console.log('top', currentUser)
+    if (currentGroup && currentGroup.id) {
+      const { id } = currentGroup;
+      dispatch(fetchCategories(id));
+      dispatch(fetchCurrentGroupUsers(id));
+    }
+  }, [currentGroup.id]);
 
   return <ApplicationContents />;
 };
