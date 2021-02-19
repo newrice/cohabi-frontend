@@ -35,17 +35,21 @@ export const userSlice = createSlice({
       // eslint-disable-next-line no-param-reassign
       state.currentUser = action.payload;
     },
+    setCurrentUserGroup: (state, action: PayloadAction<IGroup[]>) => {
+      // eslint-disable-next-line no-param-reassign
+      state.currentUser.groups = action.payload;
+    },
   },
 });
 
-export const { setCurrentUser } = userSlice.actions;
+export const { setCurrentUser, setCurrentUserGroup } = userSlice.actions;
 
 export const selectCurrentUser = (state: RootState): ICurrentUser =>
   state.user.currentUser;
 
 export default userSlice.reducer;
 
-export const fetchCurrentUser = (): AppThunk => async (dispatch) => {
+export const fetchCurrentUser = (): AppThunk => async dispatch => {
   try {
     const repoDetails = await fetchMe();
     const { error } = isApiError(repoDetails, true);

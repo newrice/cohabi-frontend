@@ -85,3 +85,12 @@ export const sortByKey = (data: IGroupedCostList): IGroupedCostList => {
     });
   return ordered;
 };
+
+export const arrayRemove = (
+  array: any[],
+  key: string,
+  value: unknown,
+): any[] => {
+  const newArray = _.cloneDeep(array);
+  return newArray.map(item => item[key] !== value);
+};

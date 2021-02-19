@@ -3,6 +3,7 @@ import { II18n } from "./resource.type";
 const en: II18n = {
   MSG_SUCCESS: "Succes",
   MSG_FAILED: "Failed",
+  MSG_CONFIRM_EXIT_GROUP: "Exit Group ?",
   MSG_CREATE_ADMIN_ACCOUNT: "Create administrator account",
   MSG_USER_ID_ALLOWED_CHARS: "Only alphabets, number, .-_ allowed",
   MSG_PASSWORD_ALLOWED_CHARS:

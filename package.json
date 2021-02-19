@@ -1,7 +1,7 @@
 {
   "name": "cohabi-frontend",
   "version": "0.1.0",
-  "homepage": "./",
+  "homepage": "/",
   "private": false,
   "dependencies": {
     "@aws-amplify/ui-components": "^0.10.1",

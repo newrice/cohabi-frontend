@@ -1,3 +1,5 @@
+import { IApiResponseBase } from ".";
+
 // #region Calondar
 export interface ICalendarBase {
   date: string;
@@ -78,7 +80,15 @@ export interface IGroup extends IGroupBase {
 }
 
 export interface IResponseGroup extends IGroup {
-  users: string[];
+  users: IUser[];
+}
+export type TGroupRequest = "Add" | "Invite" | "Exit" | "Update" | "Change";
+export interface IRequestHandler {
+  onRequestStart?: (type: TGroupRequest) => void;
+  onRequestEnd?: (response?: IApiResponseBase<void>) => void;
+}
+export interface IGroupHandler<T> extends IRequestHandler {
+  data: T;
 }
 // #endregion
 

@@ -8,37 +8,43 @@ import {
 } from "@aws-amplify/ui-react";
 import { AuthState } from "@aws-amplify/ui-components";
 import { selectAuthState } from "./authSlice";
-import SignupSent from "./SignupSent";
 
-interface IAuthPage {
+export interface IAuth {
   initialAuthState?: AuthState.SignIn | AuthState.SignUp;
+}
+
+interface IWithAuth extends IAuth {
   children?: React.ReactNode;
 }
-const WithAuth = ({ initialAuthState, children }: IAuthPage): JSX.Element => {
+export const AuthComponent = (props: IAuth): JSX.Element => (
+  // eslint-disable-next-line react/jsx-props-no-spreading
+  <AmplifyAuthenticator {...props}>
+    <AmplifySignIn slot="sign-in" />
+    <AmplifySignUp
+      slot="sign-up"
+      formFields={[
+        { type: "username" },
+        { type: "email" },
+        { type: "password" },
+      ]}
+    />
+  </AmplifyAuthenticator>
+);
+const WithAuth = ({ initialAuthState, children }: IWithAuth): JSX.Element => {
   const authState = useSelector(selectAuthState);
   // eslint-disable-next-line no-nested-ternary
   return authState === AuthState.SignedIn ? (
     <>{children}</>
-  ) : authState === AuthState.ConfirmSignUp ? (
-    <SignupSent />
   ) : (
-    <AmplifyAuthenticator initialAuthState={initialAuthState}>
-      <AmplifySignIn slot="sign-in" />
-      <AmplifySignUp
-        slot="sign-up"
-        formFields={[
-          { type: "username" },
-          { type: "email" },
-          { type: "password" },
-        ]}
-      />
-    </AmplifyAuthenticator>
+    <AuthComponent initialAuthState={initialAuthState} />
   );
 };
 
 WithAuth.defaultProps = {
-  initialAuthState: AuthState.SignIn,
   children: null,
+};
+AuthComponent.defalutProps = {
+  initialAuthState: AuthState.SignIn,
 };
 
 export default WithAuth;

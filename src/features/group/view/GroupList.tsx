@@ -1,46 +1,46 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import { createStyles, List, makeStyles, Theme } from "@material-ui/core";
-import { selectCurrentGroup } from "../groupSlice";
-import { IGroup } from "../../../types";
+import React, { useCallback } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Button, List } from "@material-ui/core";
+import AddIcon from "@material-ui/icons/Add";
 import GroupListItem from "./GroupListItem";
+import { selectCurrentGroup, setCurrentGroup } from "../groupSlice";
+import { selectCurrentUser } from "../../user/userSlice";
+import { IGroup } from "../../../types";
+import { isEqual } from "../../../utils";
 
 interface IGroupList {
-  groups: IGroup[];
-  onSelect: (group: IGroup) => void;
+  onAddClick: () => void;
   onEditClick: (group: IGroup) => void;
 }
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      width: "100%",
-      backgroundColor: theme.palette.background.paper,
-    },
-  }),
+export const GroupList = React.memo(
+  ({ onAddClick, onEditClick }: IGroupList): JSX.Element => {
+    const dispatch = useDispatch();
+    const { groups } = useSelector(selectCurrentUser);
+    const currentGroup = useSelector(selectCurrentGroup);
+    const handleSelect = useCallback((group: IGroup) => {
+      dispatch(setCurrentGroup(group));
+    }, []);
+    return (
+      <>
+        <List component="nav" aria-label="contacts">
+          {groups.map(group => (
+            <GroupListItem
+              key={`group-list-${group.id}`}
+              group={group}
+              selected={group.id === currentGroup.id}
+              onSelect={handleSelect}
+              onEditClick={onEditClick}
+            />
+          ))}
+        </List>
+        <Button onClick={onAddClick}>
+          <AddIcon />
+        </Button>
+      </>
+    );
+  },
+  isEqual,
 );
-
-const GroupList = ({
-  groups,
-  onSelect,
-  onEditClick,
-}: IGroupList): JSX.Element => {
-  const currentGroup = useSelector(selectCurrentGroup);
-  const classes = useStyles();
-  // console.log("groups : ", groups);
-  return (
-    <List component="nav" className={classes.root} aria-label="contacts">
-      {groups.map(group => (
-        <GroupListItem
-          key={`group-list-${group.id}`}
-          group={group}
-          selected={group.id === currentGroup.id}
-          onSelect={onSelect}
-          onEditClick={onEditClick}
-        />
-      ))}
-    </List>
-  );
-};
 
 export default GroupList;
