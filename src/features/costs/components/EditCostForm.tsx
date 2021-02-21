@@ -32,7 +32,6 @@ const EditCostForm = React.memo(
     onRequestStart,
     onRequestEnd,
   }: IEditCostForm): JSX.Element => {
-    console.log("*** EditCostForm");
     const { t } = useTranslation();
     const [cost, setCost] = useState<ICostResponse | null>(item);
     useEffect(() => {

@@ -5,8 +5,9 @@ import {
   SortableElement,
   SortableHandle,
 } from "react-sortable-hoc";
-import { IconButton, SvgIcon } from "@material-ui/core";
+import { Button, IconButton, SvgIcon } from "@material-ui/core";
 import DragHandleIcon from "@material-ui/icons/DragHandle";
+import AddIcon from "@material-ui/icons/Add";
 import clone from "lodash/cloneDeep";
 import {
   endAddornmentClass,
@@ -82,29 +83,34 @@ const CategoryList = ({
 
   return (
     // divがないとsortableできない
-    <div>
-      {items.map((category, index) =>
-        isN999(category) ? (
-          <div>
-            <DragHandle iconElem={<SvgIcon />} disabled />
-            <N999CategoryItem
+    <>
+      <div>
+        {items.map((category, index) =>
+          isN999(category) ? (
+            <div>
+              <DragHandle iconElem={<SvgIcon />} disabled />
+              <N999CategoryItem
+                key={`category-item-${category.id}`}
+                item={category}
+                onAddClick={handleAdd}
+              />
+            </div>
+          ) : (
+            <SortableNormal
               key={`category-item-${category.id}`}
               item={category}
-              onAddClick={handleAdd}
+              index={index}
+              onChangeName={handleNameChange(index)}
+              onDisableClick={handleDisableClick(index, !category.disabled)}
+              onRemoveClick={handleRemoveClick(index)}
             />
-          </div>
-        ) : (
-          <SortableNormal
-            key={`category-item-${category.id}`}
-            item={category}
-            index={index}
-            onChangeName={handleNameChange(index)}
-            onDisableClick={handleDisableClick(index, !category.disabled)}
-            onRemoveClick={handleRemoveClick(index)}
-          />
-        ),
-      )}
-    </div>
+          ),
+        )}
+      </div>
+      <Button onClick={handleAdd} size="small">
+        <AddIcon />
+      </Button>
+    </>
   );
 };
 

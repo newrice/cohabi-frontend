@@ -39,7 +39,7 @@ const NewCostForm = React.memo(
     onRequestStart,
     onRequestEnd,
   }: INewCostForm): JSX.Element => {
-    console.log("*** NewCostDetailForm");
+    // console.log("*** NewCostDetailForm");
     const { t } = useTranslation();
     const [cost, setCost] = useState<ICost>(baseCost(currentUserId));
 

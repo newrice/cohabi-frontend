@@ -17,6 +17,8 @@ const getPaymentLabelKey = (payment: number) => {
   return str;
 };
 
+const copyButtonClass = "margin-rl-8";
+
 const equaler = (costs: ICost[], length: number) => {
   const all = getTotal(costs);
   const num = Math.floor(all / length);
@@ -55,7 +57,10 @@ export class UserSummary extends AbstractSumary {
         <Typography key={`summary-user-${user.id}`}>
           {getUserPaymentString(user.id)}
         </Typography>
-        <IconButton onClick={this.handleCopy(user.id)}>
+        <IconButton
+          onClick={this.handleCopy(user.id)}
+          className={copyButtonClass}
+        >
           <FileCopyIcon />
         </IconButton>
       </div>

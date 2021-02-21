@@ -8,7 +8,7 @@ const paperClass = "underlay-paper-base input-dialog-base";
 
 const NewCostDialog = React.memo((props: INewCostForm): JSX.Element => {
   const [open, setOpen] = useState<boolean>(false);
-  console.log("*** NewCostDialog");
+  // console.log("*** NewCostDialog");
   const handleOpen = useCallback(() => {
     setOpen(true);
   }, []);

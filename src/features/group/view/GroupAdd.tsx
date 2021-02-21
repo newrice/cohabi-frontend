@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from "react";
-import { IconButton } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 import SaveIcon from "@material-ui/icons/Save";
 import { GroupNameField } from "./GroupNameTextField";
 import { IRequestHandler } from "../../../types";
@@ -25,9 +25,9 @@ export const GroupAdd = ({
         onNameChange={handleNameChange}
         className={formFieldCommonClass}
       />
-      <IconButton disabled={!name} onClick={handleAdd}>
+      <Button disabled={!name} onClick={handleAdd}>
         <SaveIcon />
-      </IconButton>
+      </Button>
     </>
   );
 };
