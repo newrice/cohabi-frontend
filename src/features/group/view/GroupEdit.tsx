@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Button, IconButton, makeStyles, Theme } from "@material-ui/core";
+import { Button, makeStyles, Theme } from "@material-ui/core";
 import SaveIcon from "@material-ui/icons/Save";
+import clsx from "clsx";
 import { GroupNameField } from "./GroupNameTextField";
 import { IGroup, IRequestHandler } from "../../../types";
 import { edit } from "./functions";
@@ -13,6 +14,7 @@ interface IGroupEdit extends IRequestHandler {
 }
 
 const rowClass = "row-container jc-center-container";
+const buttonClass = "flex-auto margin-tb-8";
 const formFieldCommonClass = "input-field-base margin-tb-8";
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -58,14 +60,19 @@ export const GroupEdit = ({
         onNameChange={handleNameChange}
         className={formFieldCommonClass}
       />
-      <IconButton disabled={!newName} onClick={handleSavename}>
+      <Button
+        size="small"
+        disabled={!newName}
+        onClick={handleSavename}
+        className={buttonClass}
+      >
         <SaveIcon />
-      </IconButton>
+      </Button>
       <div className={rowClass}>
         <Button
           onClick={handleExitClick}
           variant="outlined"
-          className={classes.exitButton}
+          className={clsx(buttonClass, classes.exitButton)}
         >
           {t("LABEL_EXIT_GROUP")}
         </Button>
@@ -73,6 +80,7 @@ export const GroupEdit = ({
           onClick={handleInviteClick}
           variant="outlined"
           color="secondary"
+          className={buttonClass}
         >
           {t("LABEL_INVITE")}
         </Button>

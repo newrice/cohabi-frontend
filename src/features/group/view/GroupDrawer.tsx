@@ -12,11 +12,6 @@ import GroupAdd from "./GroupAdd";
 
 const drawerClass = clsx("border-top-radius");
 const formClass = clsx("column-container");
-const rowClass = clsx(
-  "row-container",
-  "jc-center-container",
-  "ai-flex-end-container",
-);
 
 type GroupDrawer = "Add" | "Edit" | "Exit" | "Invite" | "List";
 
@@ -35,9 +30,7 @@ const Drawer = ({ open, onClose, children }: IDrawer) => (
       className: drawerClass,
     }}
   >
-    <div className={formClass}>
-      <div className={rowClass}>{children}</div>
-    </div>
+    <div className={formClass}>{children}</div>
   </InsideAppDrawer>
 );
 

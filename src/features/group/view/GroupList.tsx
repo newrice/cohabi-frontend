@@ -3,7 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { Button, List } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 import GroupListItem from "./GroupListItem";
-import { selectCurrentGroup, setCurrentGroup } from "../groupSlice";
+import {
+  selectCurrentGroup,
+  setCurrentGroup,
+  setIsGroupDialogOpen,
+} from "../groupSlice";
 import { selectCurrentUser } from "../../user/userSlice";
 import { IGroup } from "../../../types";
 import { isEqual } from "../../../utils";
@@ -20,10 +24,11 @@ export const GroupList = React.memo(
     const currentGroup = useSelector(selectCurrentGroup);
     const handleSelect = useCallback((group: IGroup) => {
       dispatch(setCurrentGroup(group));
+      dispatch(setIsGroupDialogOpen(false));
     }, []);
     return (
       <>
-        <List component="nav" aria-label="contacts">
+        <List style={{ width: "100%" }}>
           {groups.map(group => (
             <GroupListItem
               key={`group-list-${group.id}`}

@@ -74,7 +74,7 @@ export const fetchCurrentGroupUsers = (
     const { error } = isApiError(repoDetails, true);
     if (!error) {
       const { body } = repoDetails;
-      if (body && !isEmpty(body) && isArray(body)) {
+      if (body && !isEmpty(body.users) && isArray(body.users)) {
         dispatch(setCurrentGroupUser(body.users as IUser[]));
       } else {
         dispatch(setCurrentGroupUser(initialState.currentGroupUsers));

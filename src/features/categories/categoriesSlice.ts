@@ -5,6 +5,7 @@ import { RootState } from "../../app/rootReducer";
 import { AppThunk } from "../../app/store";
 import { ICategory } from "../../types";
 import { isApiError } from "../../utils";
+// import { categoriesData } from "../../__mock__/data";
 
 export const initialState: ICategory[] = [];
 

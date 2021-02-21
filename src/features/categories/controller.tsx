@@ -31,7 +31,7 @@ const CategoriesController = (): JSX.Element => {
 
   useEffect(() => {
     dispatch(fetchCategories(currentGroup.id));
-  }, [dispatch, fetchCategories, refresh, currentGroup]);
+  }, [refresh]);
 
   const responseHandler = (
     res: IApiResponseBase<undefined>,
