@@ -3,20 +3,21 @@ import { useDispatch, useSelector } from "react-redux";
 import { groupBy, isArray, isEmpty } from "lodash";
 import CalendarForm from "./CalendarForm";
 import { setProgress, setSnackState } from "../feedback/feedbackSlice";
-import { selectCurrentGroup } from "../group/groupSlice";
+import {
+  selectCurrentGroup,
+  selectCurrentGroupUser,
+} from "../group/groupSlice";
 import {
   createCalendar,
   deleteCalendar,
   fetchCalendars,
   updateCalendar,
-  fetchUsers,
 } from "../../api";
 import {
   IApiResponseBase,
   ICalendar,
   ICalendarBase,
   ICalendarResponse,
-  IUser,
 } from "../../types";
 import { isApiError, createSnackState } from "../../utils";
 // FIXME:
@@ -35,9 +36,10 @@ const calendarGroupBy = (calendars: ICalendarResponse[]) => {
 
 const CalendarController = (): JSX.Element => {
   const currentGroup = useSelector(selectCurrentGroup);
+  const users = useSelector(selectCurrentGroupUser);
   const dispatch = useDispatch();
   const [calendars, setCalendars] = useState<ICalendarResponse[]>([]);
-  const [users, setUsers] = useState<IUser[]>([]);
+  // const [users, setUsers] = useState<IUser[]>([]);
   const [refresh, setRefresh] = useState<boolean>(false);
 
   useEffect(() => {
@@ -59,21 +61,6 @@ const CalendarController = (): JSX.Element => {
     };
     getDatas();
   }, [refresh, currentGroup]);
-
-  useEffect(() => {
-    const getDatas = async () => {
-      const data = await fetchUsers(currentGroup.id);
-      const { error } = isApiError(data, true);
-      if (!error)
-        setUsers(
-          data.body && !isEmpty(data.body) && isArray(data.body)
-            ? data.body
-            : [],
-        );
-      // setUsers(usersData);
-    };
-    getDatas();
-  }, [currentGroup]);
 
   const responseHandler = useCallback(
     (res: IApiResponseBase<undefined>, withBody?: boolean) => {
